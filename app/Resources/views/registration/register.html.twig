@@ -1,0 +1,15 @@
+<html>
+<head>
+    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}" />
+</head>
+    {% form_theme form 'bootstrap_3_horizontal_layout.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.plainPassword.first) }}
+        {{ form_row(form.plainPassword.second) }}
+    <div style="width: 0; margin: auto;">
+        <button class="btn btn-primary" type="submit">Register!</button>
+    </div>
+    {{ form_end(form) }}
+</html>
