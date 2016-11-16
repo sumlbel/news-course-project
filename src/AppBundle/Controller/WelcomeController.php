@@ -13,6 +13,9 @@ class WelcomeController extends Controller
      */
     public function listAction()
     {
-        return new Response('<html><body><h1>Lets get started!</h1><br>Hello!</body></html>');
+        return new Response(
+            '<html><head><title>Welcome!</title></head>
+            <body><h1>Lets get started!</h1><br>Hello!</body></html>'
+        );
     }
 }
