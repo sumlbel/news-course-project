@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Response;
 
 class WelcomeController extends Controller
 {
@@ -13,9 +12,6 @@ class WelcomeController extends Controller
      */
     public function listAction()
     {
-        return new Response(
-            '<html><head><title>Welcome!</title></head>
-            <body><h1>Lets get started!</h1><br>Hello!</body></html>'
-        );
+        return $this->render('default/index.html.twig');
     }
 }
