@@ -16,6 +16,9 @@ security:
                 login_path: login
                 check_path: login
                 provider: user_provider
+            logout:
+                path:   /logout
+                target: /
 
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -27,3 +30,7 @@ security:
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
+
+    role_hierarchy:
+        ROLE_USER:        IS_AUTHENTICATED_ANONYMOUSLY
+        ROLE_ADMIN:       ROLE_USER

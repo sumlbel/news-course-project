@@ -5,12 +5,12 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class SecurityController extends Controller
+class LoginController extends Controller
 {
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction($name)
+    public function loginAction()
     {
         $authenticationUtils = $this->get('security.authentication_utils');
 

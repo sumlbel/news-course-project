@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\UserType;
+use AppBundle\Form\RegistrationForm;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     {
         // 1) build the form
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(RegistrationForm::class, $user);
 
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);

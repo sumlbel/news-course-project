@@ -25,7 +25,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="username", type="string", length=64, unique=true)
      */
     private $username;
@@ -45,7 +45,8 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var string
-     *
+     * @Assert\Email()
+     * @Assert\NotBlank()
      * @ORM\Column(name="email", type="string", length=64, unique=true)
      */
     private $email;
@@ -57,6 +58,12 @@ class User implements UserInterface, \Serializable
      */
     private $isActive;
 
+    /**
+     * @var string
+     * @Assert\NotBlank()
+     * @ORM\Column(name="role", type="string", length=64)
+     */
+    private $role;
 
     /**
      * Get id
@@ -189,9 +196,14 @@ class User implements UserInterface, \Serializable
         return null;
     }
 
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
+
     public function getRoles()
     {
-        return array('ROLE_USER');
+        return array($this->role);
     }
 
     public function eraseCredentials()
