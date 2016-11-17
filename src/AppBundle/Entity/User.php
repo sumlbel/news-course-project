@@ -63,7 +63,7 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      * @ORM\Column(name="role", type="string", length=64)
      */
-    private $role;
+    private $role = 'ROLE_USER';
 
     /**
      * Get id
