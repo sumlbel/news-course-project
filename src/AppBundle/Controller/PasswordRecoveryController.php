@@ -7,9 +7,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Util\TokenGenerator;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
+/**
+ * Class PasswordRecoveryController
+ * @package AppBundle\Controller
+ */
 class PasswordRecoveryController extends Controller
 {
     /**
@@ -24,7 +28,7 @@ class PasswordRecoveryController extends Controller
             $this->_sendRecoveryInfo($user);
             $this->addFlash(
                 'recovery-password-success',
-                'All done, check your email for further instructions'
+                'We sent you email, check it for further instructions'
             );
 
 
@@ -47,8 +51,7 @@ class PasswordRecoveryController extends Controller
      */
     public function resetAction(Request $request, $token)
     {
-
-        $user = $this->_findUserByToken($token);
+        $user = $this->findUserByToken($token);
 
         if ($request->isMethod('POST')) {
             $password = $request->request->get('_password');
@@ -56,7 +59,7 @@ class PasswordRecoveryController extends Controller
             if ($password === $repeatedPassword) {
                 $this->_changePassword($user, $password);
                 $this->addFlash(
-                    'reset-password-success',
+                    'can-login',
                     'All right. Now you can log in'
                 );
                 return $this->redirectToRoute('login');
@@ -110,10 +113,17 @@ class PasswordRecoveryController extends Controller
         return $url;
     }
 
-    /**
-     * @param $token
-     * @return User|null|object
-     */
+    private function _changePassword(User $user, $password)
+    {
+        $em = $this->getDoctrine()->getEntityManager();
+        $user->setPlainPassword($password);
+        $password = $this->get('security.password_encoder')
+            ->encodePassword($user, $user->getPlainPassword());
+        $user->setPassword($password);
+        $user->setConfirmationToken(null);
+        $em->flush();
+    }
+
     private function _findUserByToken($token)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
@@ -128,16 +138,5 @@ class PasswordRecoveryController extends Controller
         }
 
         return $user;
-    }
-
-    private function _changePassword($user, $password)
-    {
-        $em = $this->getDoctrine()->getEntityManager();
-        $user->setPlainPassword($password);
-        $password = $this->get('security.password_encoder')
-            ->encodePassword($user, $user->getPlainPassword());
-        $user->setPassword($password);
-        $user->setConfirmationToken(null);
-        $em->flush();
     }
 }

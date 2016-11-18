@@ -13,4 +13,15 @@
         <button class="btn btn-primary" type="submit">Register!</button>
     </div>
     {{ form_end(form) }}
+    <br>
+    {% for flashMessage in app.session.flashbag.get('confirmation-email-sent') %}
+        <div  class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    {% for flashMessage in app.session.flashbag.get('form-is-invalid') %}
+        <div  class="alert alert-danger">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 {% endblock %}

@@ -25,7 +25,7 @@
         <a href="{{ path('recovery') }}">Forgot username or password?</a>
     </div>
 
-    {% for flashMessage in app.session.flashbag.get('recovery-password-success') %}
+    {% for flashMessage in app.session.flashbag.get('can-login') %}
         <div  class="alert alert-success">
             {{ flashMessage }}
         </div>
