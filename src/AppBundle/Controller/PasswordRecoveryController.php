@@ -51,7 +51,7 @@ class PasswordRecoveryController extends Controller
      */
     public function resetAction(Request $request, $token)
     {
-        $user = $this->findUserByToken($token);
+        $user = $this->_findUserByToken($token);
 
         if ($request->isMethod('POST')) {
             $password = $request->request->get('_password');

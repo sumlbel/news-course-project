@@ -9,9 +9,9 @@
 
     <form class="form-inline" action="{{ path('login') }}" method="post">
         <div class="form-group">
-            <label class="sr-only" for="username">Username</label>
-            <input type="text" class="form-control" placeholder="Username"
-               id="username" name="_username" value="{{ last_username }}" />
+            <label class="sr-only" for="username">Email</label>
+            <input type="text" class="form-control" placeholder="Email"
+               id="email" name="_email" />
         </div>
         <div class="form-group">
             <label class="sr-only" for="password">Password</label>
@@ -19,10 +19,10 @@
                    id="password" name="_password" />
         </div>
 
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-primary" type="submit">Log in</button>
     </form>
     <div>
-        <a href="{{ path('recovery') }}">Forgot username or password?</a>
+        <a href="{{ path('recovery') }}">Forgot password?</a>
     </div>
 
     {% for flashMessage in app.session.flashbag.get('can-login') %}

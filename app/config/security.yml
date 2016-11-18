@@ -7,7 +7,8 @@ security:
         user_provider:
             entity:
                 class: AppBundle:User
-                property: username
+                property: email
+
 
     firewalls:
         main:
@@ -16,6 +17,7 @@ security:
                 login_path: login
                 check_path: login
                 provider: user_provider
+                username_parameter: _email
             logout:
                 path:   /logout
                 target: /
