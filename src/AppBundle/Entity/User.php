@@ -43,25 +43,23 @@ class User implements UserInterface, \Serializable
      */
     private $plainPassword;
 
+
+    /**
+     * Random string sent to the user email address in order to verify it.
+     *
+     * @var string
+     *
+     * @ORM\Column(name="confirmation_token",
+     *     type="string", length=180, unique=true, nullable=true )
+     */
+    private $confirmationToken;
+
     /**
      * @var string
      * @Assert\Email()
      * @Assert\NotBlank()
      * @ORM\Column(name="email", type="string", length=64, unique=true)
      */
-
-    /**
-     * Random string sent to the user email address in order to verify it.
-     *
-     * @var string
-     */
-    protected $confirmationToken;
-
-    /**
-     * @var \DateTime
-     */
-    protected $passwordRequestedAt;
-
     private $email;
 
     /**
@@ -144,6 +142,22 @@ class User implements UserInterface, \Serializable
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param string $confirmationToken
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
     }
 
     /**

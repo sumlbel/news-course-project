@@ -22,6 +22,12 @@
         <button class="btn btn-primary" type="submit">Login</button>
     </form>
     <div>
-        <a href="{{ path('forgot') }}">Forgot username or password?</a>
+        <a href="{{ path('recovery') }}">Forgot username or password?</a>
     </div>
+
+    {% for flashMessage in app.session.flashbag.get('recovery-password-success') %}
+        <div  class="alert alert-success">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 {% endblock %}
