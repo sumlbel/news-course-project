@@ -16,9 +16,6 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class PasswordRecoveryController extends Controller
 {
-    /**
-     * @Route("/recovery", name="recovery")
-     */
     public function recoveryAction(Request $request)
     {
         $email = $request->request->get('_email');
@@ -46,9 +43,6 @@ class PasswordRecoveryController extends Controller
         );
     }
 
-    /**
-     * @Route("/reset/{token}", name="reset")
-     */
     public function resetAction(Request $request, $token)
     {
         $user = $this->_findUserByToken($token);

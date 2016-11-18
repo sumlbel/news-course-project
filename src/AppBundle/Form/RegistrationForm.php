@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class RegistrationForm extends AbstractType
 {
@@ -23,6 +24,12 @@ class RegistrationForm extends AbstractType
                     'first_options'  => array('label' => 'Password'),
                     'second_options' => array('label' => 'Repeat Password'),
                 )
+            )
+            ->add(
+                'wantNewsletter', CheckboxType::class, array(
+                'label'    => 'Do you want take newsletter everyday on email?',
+                'required' => false,
+                    )
             );
     }
 

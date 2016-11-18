@@ -13,9 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends Controller
 {
-    /**
-     * @Route("/register", name="user_registration")
-     */
     public function registerAction(Request $request)
     {
         $user = new User();
@@ -29,7 +26,7 @@ class RegistrationController extends Controller
                 'confirmation-email-sent',
                 'We sent you a verify link. Please check your email.'
             );
-        } else {
+        } elseif ($form->isSubmitted()) {
             $this->addFlash(
                 'form-is-invalid',
                 'Form is invalid. Please check entered information'
@@ -42,9 +39,6 @@ class RegistrationController extends Controller
         );
     }
 
-    /**
-     * @Route("/register/{token}", name="register_confirmation")
-     */
     public function confirmAction($token)
     {
         $em = $this->getDoctrine()->getManager();

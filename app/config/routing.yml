@@ -1,5 +1,47 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+about:
+    path:     /{_locale}/about
+    defaults: { _controller: AppBundle:About:index }
+    requirements:
+        _locale: en|ru|be
+admin:
+    path:     /{_locale}/admin
+    defaults: { _controller: AppBundle:Admin:admin}
+    requirements:
+        _locale: en|ru|be
+login:
+    path:     /{_locale}/login
+    defaults: { _controller: AppBundle:Login:login }
+    requirements:
+        _locale: en|ru|be
 logout:
     path: /logout
+recovery:
+    path:     /{_locale}/recovery
+    defaults: { _controller: AppBundle:PasswordRecovery:recovery }
+    requirements:
+        _locale: en|ru|be
+reset:
+    path:     /{_locale}/reset/{token}
+    defaults: { _controller: AppBundle:PasswordRecovery:reset }
+    requirements:
+        _locale: en|ru|be
+user_registration:
+    path:     /{_locale}/register
+    defaults: { _controller: AppBundle:Registration:register }
+    requirements:
+        _locale: en|ru|be
+register_confirmation:
+    path:     /{_locale}/register/{token}
+    defaults: { _controller: AppBundle:Registration:confirm }
+    requirements:
+        _locale: en|ru|be
+welcome_default:
+    path:     /
+    defaults: { _controller: AppBundle:Welcome:index, _locale: en }
+    requirements:
+        _locale: en|ru|be
+welcome:
+    path:     /{_locale}/
+    defaults: { _controller: AppBundle:Welcome:index }
+    requirements:
+        _locale: en|ru|be

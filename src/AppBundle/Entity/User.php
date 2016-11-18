@@ -70,6 +70,13 @@ class User implements UserInterface, \Serializable
     private $isActive;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="want_newsletter", type="boolean")
+     */
+    private $wantNewsletter;
+
+    /**
      * @var string
      * @Assert\NotBlank()
      * @ORM\Column(name="role", type="string", length=64)
@@ -206,6 +213,22 @@ class User implements UserInterface, \Serializable
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getWantNewsletter()
+    {
+        return $this->wantNewsletter;
+    }
+
+    /**
+     * @param boolean $wantNewsletter
+     */
+    public function setWantNewsletter($wantNewsletter)
+    {
+        $this->wantNewsletter = $wantNewsletter;
     }
 
     public function __construct()

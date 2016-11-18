@@ -7,10 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class WelcomeController extends Controller
 {
-    /**
-     * @Route("/", name="welcome")
-     */
-    public function listAction()
+    public function indexAction()
     {
         return $this->render('default/index.html.twig');
     }

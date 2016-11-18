@@ -7,9 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class LoginController extends Controller
 {
-    /**
-     * @Route("/login", name="login")
-     */
     public function loginAction()
     {
         $authenticationUtils = $this->get('security.authentication_utils');
