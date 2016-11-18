@@ -49,6 +49,19 @@ class User implements UserInterface, \Serializable
      * @Assert\NotBlank()
      * @ORM\Column(name="email", type="string", length=64, unique=true)
      */
+
+    /**
+     * Random string sent to the user email address in order to verify it.
+     *
+     * @var string
+     */
+    protected $confirmationToken;
+
+    /**
+     * @var \DateTime
+     */
+    protected $passwordRequestedAt;
+
     private $email;
 
     /**
