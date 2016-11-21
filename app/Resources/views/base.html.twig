@@ -3,9 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}" />
-        {% endblock %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('bootstrap.min.css') }}"/>
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" href="{{ asset('favicons/favicon-32x32.png') }}" sizes="32x32">
         <link rel="icon" type="image/png" href="{{ asset('favicons/favicon-16x16.png') }}" sizes="16x16">
@@ -25,6 +23,8 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="{{ path('login') }}">Log in</a></li>
                         <li><a href="{{ path('user_registration') }}">Sign up</a></li>
+                        <li><a href="{{ path('create_article') }}">Create article</a></li>
+                        <li><a href="{{ path('admin') }}">Admin page</a></li>
                         <li><a href="{{ path('about') }}">About</a></li>
                         <li><a href="{{ path('logout') }}">Logout</a></li>
                     </ul>

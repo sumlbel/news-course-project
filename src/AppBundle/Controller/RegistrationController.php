@@ -17,8 +17,8 @@ class RegistrationController extends Controller
     {
         $user = new User();
         $form = $this->createForm(RegistrationForm::class, $user);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->_setEncryptPassword($user);
             $this->_sendConfirmationInfo($user);
@@ -87,7 +87,7 @@ class RegistrationController extends Controller
     private function _generateConfirmationInfo(User $user)
     {
         $tokenGenerator = new TokenGenerator();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user->setConfirmationToken($tokenGenerator->generateToken());
         $em->flush();
         $url = $this->generateUrl(

@@ -45,3 +45,8 @@ welcome:
     defaults: { _controller: AppBundle:Welcome:index }
     requirements:
         _locale: en|ru|be
+create_article:
+    path:     /{_locale}/create
+    defaults: { _controller: AppBundle:News:creation }
+    requirements:
+        _locale: en|ru|be
