@@ -55,6 +55,20 @@ class Article
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="body", type="text", nullable=true)
+     */
+    private $body;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="views", type="integer")
+     */
+    private $views;
+
 
     /**
      * Get id
@@ -163,6 +177,22 @@ class Article
     }
 
     /**
+     * @return string
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
+
+    /**
+     * @param string $body
+     */
+    public function setBody($body)
+    {
+        $this->body = $body;
+    }
+
+    /**
      * Set category
      *
      * @param \AppBundle\Entity\Category $category
@@ -184,5 +214,26 @@ class Article
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    /**
+     * @param int $views
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+    }
+
+    public function __construct()
+    {
+        $this->setViews(0);
     }
 }

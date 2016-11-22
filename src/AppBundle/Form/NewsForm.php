@@ -24,8 +24,14 @@ class NewsForm extends AbstractType
                 'placeholder' => 'Choose category',
             )
         );
-        $builder->add('publicationDate', DateType::class);
+        $builder->add(
+            'publicationDate', DateType::class, array(
+                'format' => 'dd MMMM yyyy',
+                'data' => new \DateTime(),
+                )
+        );
         $builder->add('description', TextareaType::class);
+        $builder->add('body', TextareaType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
