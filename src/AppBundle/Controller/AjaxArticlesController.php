@@ -10,10 +10,10 @@ class AjaxArticlesController extends Controller
 {
     public function articlesListAction(Request $request)
     {
-        $users = $this->_getRequestedArticles($request);
+        $articles = $this->_getRequestedArticles($request);
         $array = array();
-        foreach ($users as $user) {
-            $array = $this->_serialize($array, $user);
+        foreach ($articles as $article) {
+            $array = $this->_serialize($array, $article);
         }
         return $this->json($array);
     }
@@ -57,22 +57,22 @@ class AjaxArticlesController extends Controller
      */
     private function _getRequestedArticles(Request $request)
     {
-        $usersPerPage = 15;
+        $articlesPerPage = 15;
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
         $sortByField = $request->query->get('sortbyfield', 'title');
         $order = $request->query->get('order', 'asc');
         $filterField = $request->query->get('filterbyfield');
         $pattern = $request->query->get('pattern');
         $page = $request->query->get('page', 1) - 1;
-        $users = $repository->findBy(
+        $articles = $repository->findBy(
             $this->_filterField($filterField, $pattern),
             array(
                 $sortByField => $order
             ),
-            $usersPerPage,
-            $page * $usersPerPage
+            $articlesPerPage,
+            $page * $articlesPerPage
         );
 
-        return $users;
+        return $articles;
     }
 }

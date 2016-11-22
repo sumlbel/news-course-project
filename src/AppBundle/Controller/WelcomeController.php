@@ -3,12 +3,24 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class WelcomeController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('default/index.html.twig');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
+        $articles = $repository->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $articles,
+            $request->query->getInt('page', 1),
+            3/*limit per page*/
+        );
+
+        // parameters to template
+        return $this->render(
+            'default/index.html.twig',
+            array('pagination' => $pagination));
     }
 }
