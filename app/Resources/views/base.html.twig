@@ -11,6 +11,7 @@
         <meta name="theme-color" content="#ffffff">
         {% stylesheets '@bootstrap_css'%}
         <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/moderator_dropdown.css') }}"/>
         {% endstylesheets %}
     </head>
     <body>
@@ -24,18 +25,27 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         {% if not is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('login') }}">Log in</a></li>
-                        <li><a href="{{ path('user_registration') }}">Sign up</a></li>
+                            <li><a href="{{ path('login') }}">Log in</a></li>
+                            <li><a href="{{ path('user_registration') }}">Sign up</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_MODERATOR') %}
-                        <li><a href="{{ path('create_article') }}">Create article</a></li>
+                            <li>
+                                <button class="dropdown-toggle btn-link"
+                                        type="button" data-toggle="dropdown">Moderator
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('create_article') }}">Create article</a></li>
+                                    <li><a href="{{ path('moderating_articles') }}">Manage articles</a></li>
+                                </ul>
+                            </li>
                         {% endif %}
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('admin') }}">Admin page</a></li>
+                            <li><a href="{{ path('admin') }}">Manage users</a></li>
                         {% endif %}
                         {% if is_granted('ROLE_USER') %}
-                        <li><a href="{{ path('about') }}">About</a></li>
-                        <li><a href="{{ path('logout') }}">Logout</a></li>
+                            <li><a href="{{ path('about') }}">About</a></li>
+                            <li><a href="{{ path('logout') }}">Logout</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -43,7 +53,7 @@
         {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
-            {% javascripts '@jquery' '@autoresize'%}
+            {% javascripts '@jquery' '@autoresize' '@bootstrap_js'%}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             <script type="text/javascript">
                 jQuery(function()

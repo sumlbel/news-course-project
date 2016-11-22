@@ -1,0 +1,7 @@
+.nav>li>button {
+    position: relative;
+    display: block;
+    padding: 15px 15px;
+    border: none;
+    text-align: -webkit-match-parent;
+}

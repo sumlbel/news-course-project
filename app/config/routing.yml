@@ -13,6 +13,11 @@ ajaxUsers:
     defaults: { _controller: AppBundle:AjaxUsers:usersList}
     requirements:
         _locale: en|ru|be
+ajaxAryicles:
+    path:     /{_locale}/ajax/articles
+    defaults: { _controller: AppBundle:AjaxArticles:articlesList}
+    requirements:
+        _locale: en|ru|be
 login:
     path:     /{_locale}/login
     defaults: { _controller: AppBundle:Login:login }
@@ -20,6 +25,11 @@ login:
         _locale: en|ru|be
 logout:
     path: /logout
+moderating_articles:
+    path:     /{_locale}/moderating_articles
+    defaults: { _controller: AppBundle:Moderator:moderatingArticles}
+    requirements:
+        _locale: en|ru|be
 recovery:
     path:     /{_locale}/recovery
     defaults: { _controller: AppBundle:PasswordRecovery:recovery }

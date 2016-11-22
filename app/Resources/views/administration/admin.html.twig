@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin page - Newscast{% endblock%}
+{% block title %}Manage users - Newscast{% endblock%}
 
 {% block body %}
     <header>
@@ -11,9 +11,9 @@
     <script>
         $("#entities-grid").ajaxgrid({
             dataUrl: "http://localserver:8000/ajax/users",
-            sortableColumns: ["id", "surname", "age"],
-            filterableColumns: ["id", "age"],
-            rowsPerPage: 5
+            sortableColumns: ["id", "username", "email", "isActive", "role"],
+            filterableColumns: ["id", "username", "email", "isActive", "role"],
+            rowsPerPage: 15
         });
     </script>
 {% endblock %}

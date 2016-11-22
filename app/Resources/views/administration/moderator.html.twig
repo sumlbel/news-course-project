@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Manage articles - Newscast{% endblock%}
+
+{% block body %}
+    <header>
+        <h1 class="text-center">Manage articles</h1>
+    </header>
+    <div id="entities-grid"></div>
+    <script src={{ asset('assets/ajaxgrid.js') }}></script>
+    <script>
+        $("#entities-grid").ajaxgrid({
+            dataUrl: "http://localserver:8000/ajax/articles",
+            sortableColumns: ["id", "title", "category", "publicationDate", "description"],
+            filterableColumns: ["id", "title", "category", "publicationDate", "description"],
+            rowsPerPage: 15
+        });
+    </script>
+{% endblock %}

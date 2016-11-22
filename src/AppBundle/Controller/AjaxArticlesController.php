@@ -2,15 +2,15 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\User;
 
-class AjaxUsersController extends Controller
+class AjaxArticlesController extends Controller
 {
-    public function usersListAction(Request $request)
+    public function articlesListAction(Request $request)
     {
-        $users = $this->_getRequestedUsers($request);
+        $users = $this->_getRequestedArticles($request);
         $array = array();
         foreach ($users as $user) {
             $array = $this->_serialize($array, $user);
@@ -29,21 +29,21 @@ class AjaxUsersController extends Controller
 
     /**
      * @param $array
-     * @param User $user
+     * @param Article $article
      * @return array
      */
-    private function _serialize($array, User $user)
+    private function _serialize($array, Article $article)
     {
         $array = array_merge(
             $array,
             array(
-                $user->getId() =>
+                $article->getId() =>
                     array(
-                        'id' => $user->getId(),
-                        'username' => $user->getUsername(),
-                        'email' => $user->getEmail(),
-                        'isActive' => $user->getIsActive(),
-                        'role' => $user->getRoles()
+                        'id' => $article->getId(),
+                        'title' => $article->getTitle(),
+                        'category' => $article->getCategory(),
+                        'publication date' => $article->getPublicationDate(),
+                        'description' => $article->getDescription()
                     )
             )
         );
@@ -53,13 +53,13 @@ class AjaxUsersController extends Controller
 
     /**
      * @param Request $request
-     * @return \AppBundle\Entity\User[]|array
+     * @return \AppBundle\Entity\Article[]|array
      */
-    private function _getRequestedUsers(Request $request)
+    private function _getRequestedArticles(Request $request)
     {
         $usersPerPage = 15;
-        $repository = $this->getDoctrine()->getRepository('AppBundle:User');
-        $sortByField = $request->query->get('sortbyfield', 'username');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
+        $sortByField = $request->query->get('sortbyfield', 'title');
         $order = $request->query->get('order', 'asc');
         $filterField = $request->query->get('filterbyfield');
         $pattern = $request->query->get('pattern');
