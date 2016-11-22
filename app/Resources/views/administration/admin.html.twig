@@ -6,16 +6,14 @@
     <header>
         <h1 class="text-center">Admin page</h1>
     </header>
-    <body>
     <div id="entities-grid"></div>
-    <script src={{ asset('ajaxgrid.js') }}></script>
+    <script src={{ asset('assets/ajaxgrid.js') }}></script>
     <script>
         $("#entities-grid").ajaxgrid({
-            dataUrl: "http://google.com",
+            dataUrl: "http://localserver:8000/ajax/users",
             sortableColumns: ["id", "surname", "age"],
             filterableColumns: ["id", "age"],
             rowsPerPage: 5
         });
     </script>
-    </body>
 {% endblock %}

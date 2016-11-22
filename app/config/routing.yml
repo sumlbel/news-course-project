@@ -8,6 +8,11 @@ admin:
     defaults: { _controller: AppBundle:Admin:admin}
     requirements:
         _locale: en|ru|be
+ajaxUsers:
+    path:     /{_locale}/ajax/users
+    defaults: { _controller: AppBundle:AjaxUsers:usersList}
+    requirements:
+        _locale: en|ru|be
 login:
     path:     /{_locale}/login
     defaults: { _controller: AppBundle:Login:login }

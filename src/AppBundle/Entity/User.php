@@ -264,9 +264,9 @@ class User implements UserInterface, \Serializable
         return serialize(array(
             $this->id,
             $this->username,
-            $this->password,
-            // see section on salt below
-            // $this->salt,
+            $this->email,
+            $this->isActive,
+            $this->role
         ));
     }
 
