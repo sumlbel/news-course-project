@@ -25,7 +25,7 @@ recovery:
     defaults: { _controller: AppBundle:PasswordRecovery:recovery }
     requirements:
         _locale: en|ru|be
-reset:
+reset_password:
     path:     /{_locale}/reset/{token}
     defaults: { _controller: AppBundle:PasswordRecovery:reset }
     requirements:

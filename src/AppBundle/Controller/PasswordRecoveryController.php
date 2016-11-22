@@ -99,7 +99,7 @@ class PasswordRecoveryController extends Controller
         $user->setConfirmationToken($tokenGenerator->generateToken());
         $em->flush();
         $url = $this->generateUrl(
-            'reset',
+            'reset_password',
             array('token' => $user->getConfirmationToken()),
             UrlGeneratorInterface::ABSOLUTE_URL
         );
