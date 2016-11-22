@@ -28,7 +28,7 @@ security:
         - { path: /recovery, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: /, roles: ROLE_USER }
-        # require ROLE_ADMIN for /admin*
+        - { path: /create, roles: ROLE_MODERATOR}
         - { path: /admin, roles: ROLE_ADMIN }
 
     encoders:
@@ -37,4 +37,5 @@ security:
 
     role_hierarchy:
         ROLE_USER:        IS_AUTHENTICATED_ANONYMOUSLY
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_MODERATOR:   ROLE_USER
+        ROLE_ADMIN:       ROLE_MODERATOR
