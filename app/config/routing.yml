@@ -3,6 +3,11 @@ about:
     defaults: { _controller: AppBundle:About:index }
     requirements:
         _locale: en|ru|be
+access_denied:
+    path:     /access_denied
+    defaults: { _controller: AppBundle:Login:login }
+    requirements:
+        _locale: en|ru|be
 admin:
     path:     /{_locale}/admin
     defaults: { _controller: AppBundle:Admin:admin}

@@ -1,31 +1,44 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets%}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/mainpage_fixes.css') }}"/>
+{% endblock %}
+
 {% block title %}Newscast{% endblock%}
 
 {% block body %}
-    <table>
-        <tr>
-            {# sorting of properties based on query components #}
-            <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Release', 'a.publicationDate') }}</th>
-            <th>{{ knp_pagination_sortable(pagination, 'Category', 'a.category.name') }}</th>
-        </tr>
-
+    <div class="center-block block-width-80">
+        <table class="nav-tabs table-condensed" title="Sort by:">
+            <tr class="small">
+                <th>Sort by:</th>
+                {# sorting of properties based on query components #}
+                <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
+                    {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Release date', 'a.publicationDate') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Category', 'cat.name') }}</th>
+            </tr>
+        </table>
+    <br>
         {# table body #}
         {% for article in pagination %}
-            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td><strong>{{ article.title }}</strong></td>
-                <td>{{ article.publicationDate | date('Y-m-d') }}</td>
-                <td>{{ article.category.name }}</td>
-            </tr>
-            <tr>
-                <td>{{ article.description }}</td>
-            </tr>
+            <div class="article-title">
+                {{ article.title }}
+            </div>
+            <div class="small attributes">
+                {{ article.publicationDate | date('d M Y') }}
+                {{ article.category.name }}
+            </div>
+            <div>
+                {{ article.description }}
+            </div>
+            <table class="table">
+                <tr><th></th></tr>
+            </table>
         {% endfor %}
-    </table>
-    {# display navigation #}
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
-    </div>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    <div>
 {% endblock %}

@@ -10,4 +10,14 @@ namespace AppBundle\Repository;
  */
 class ArticleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllArticles()
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('a')
+            ->from('AppBundle:Article', 'a')
+            ->join('a.category', 'cat')
+            ->orderBy('a.title', 'ASC');
+        return $qb->getQuery();
+    }
 }

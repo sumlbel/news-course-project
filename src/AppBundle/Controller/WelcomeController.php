@@ -9,8 +9,9 @@ class WelcomeController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $articles = $repository->findAll();
+        $repository = $this->getDoctrine()->getEntityManager()->getRepository(
+            'AppBundle:Article');
+        $articles = $repository->findAllArticles();
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $articles,
