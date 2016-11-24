@@ -3,26 +3,28 @@
 {% block title %}Sign up - Newscast{% endblock%}
 
 {% block body %}
-    {% form_theme form 'bootstrap_3_layout.html.twig' %}
-    {{ form_start(form) }}
-        {{ form_row(form.username) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.plainPassword.first) }}
-        {{ form_row(form.plainPassword.second) }}
-        {{ form_row(form.wantNewsletter) }}
-    <div>
-        <button class="btn btn-primary" type="submit">Register!</button>
+    <div class="block-width-80">
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+        {{ form_start(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.plainPassword.first) }}
+            {{ form_row(form.plainPassword.second) }}
+            {{ form_row(form.wantNewsletter) }}
+        <div>
+            <button class="btn btn-primary" type="submit">Register!</button>
+        </div>
+        {{ form_end(form) }}
+        <br>
+        {% for flashMessage in app.session.flashbag.get('confirmation-email-sent') %}
+            <div  class="alert alert-success">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('form-is-invalid') %}
+            <div  class="alert alert-danger">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
     </div>
-    {{ form_end(form) }}
-    <br>
-    {% for flashMessage in app.session.flashbag.get('confirmation-email-sent') %}
-        <div  class="alert alert-success">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
-    {% for flashMessage in app.session.flashbag.get('form-is-invalid') %}
-        <div  class="alert alert-danger">
-            {{ flashMessage }}
-        </div>
-    {% endfor %}
 {% endblock %}

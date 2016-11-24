@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title }} - Newscast{% endblock%}
+
+{% block body %}
+    <header>
+        <h1 class="text-center lead">{{ title }}</h1>
+    </header>
+    <div class="center-block block-width-80">
+        <ul class="small attributes list-inline">
+            <li class="margin-left-8">by {{ author }}</li>
+            <li class="margin-left-8">{{ publicationDate | date('d M Y') }}</li>
+            <li class="margin-left-8">{{ category }}</li>
+            <li class="margin-left-8">{{ views }} views</li>
+        </ul>
+        <span class="fr-view">
+            {{ body|raw }}
+        </span>
+    </div>
+{% endblock %}

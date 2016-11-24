@@ -108,6 +108,14 @@ assetic:
             inputs:
                 - ../web/assets/autoresize.jquery.js
 
+        froala_style:
+            inputs:
+                - ../vendor/kms/froala-editor-bundle/Resources/public/froala_editor_2.3.5/css/froala_style.min.css
+
+        froala_editor:
+            inputs:
+                - ../vendor/kms/froala-editor-bundle/Resources/public/froala_editor_2.3.5/js/froala_editor.pkgd.min.js
+
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:
@@ -118,3 +126,9 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig    # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+kms_froala_editor:
+    saveURL: "about"
+    saveInterval: 2500
+    saveParam: "content"
+    heightMin: 600

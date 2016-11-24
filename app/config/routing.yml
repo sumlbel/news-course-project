@@ -4,7 +4,7 @@ about:
     requirements:
         _locale: en|ru|be
 access_denied:
-    path:     /access_denied
+    path:     /login
     defaults: { _controller: AppBundle:Login:login }
     requirements:
         _locale: en|ru|be
@@ -23,6 +23,16 @@ ajaxAryicles:
     defaults: { _controller: AppBundle:AjaxArticles:articlesList}
     requirements:
         _locale: en|ru|be
+default:
+    path:     /
+    defaults: { _controller: AppBundle:Login:login }
+    requirements:
+        _locale: en|ru|be
+create_article:
+    path:     /{_locale}/create
+    defaults: { _controller: AppBundle:Article:creation }
+    requirements:
+        _locale: en|ru|be
 login:
     path:     /{_locale}/login
     defaults: { _controller: AppBundle:Login:login }
@@ -33,6 +43,21 @@ logout:
 moderating_articles:
     path:     /{_locale}/moderating_articles
     defaults: { _controller: AppBundle:Moderator:moderatingArticles}
+    requirements:
+        _locale: en|ru|be
+news_default:
+    path:     /news
+    defaults: { _controller: AppBundle:MainPage:index, _locale: en }
+    requirements:
+        _locale: en|ru|be
+news:
+    path:     /{_locale}/news
+    defaults: { _controller: AppBundle:MainPage:index }
+    requirements:
+        _locale: en|ru|be
+article:
+    path:     /{_locale}/news/{slug}
+    defaults: { _controller: AppBundle:News:index}
     requirements:
         _locale: en|ru|be
 recovery:
@@ -55,18 +80,7 @@ register_confirmation:
     defaults: { _controller: AppBundle:Registration:confirm }
     requirements:
         _locale: en|ru|be
-welcome_default:
-    path:     /
-    defaults: { _controller: AppBundle:Welcome:index, _locale: en }
-    requirements:
-        _locale: en|ru|be
-welcome:
-    path:     /{_locale}/
-    defaults: { _controller: AppBundle:Welcome:index }
-    requirements:
-        _locale: en|ru|be
-create_article:
-    path:     /{_locale}/create
-    defaults: { _controller: AppBundle:News:creation }
-    requirements:
-        _locale: en|ru|be
+
+kms_froala_editor:
+    resource: '@KMSFroalaEditorBundle/Resources/config/routing.yml'
+    prefix:   /froalaeditor

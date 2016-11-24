@@ -10,7 +10,7 @@
     <script src={{ asset('assets/ajaxgrid.js') }}></script>
     <script>
         $("#entities-grid").ajaxgrid({
-            dataUrl: "http://localserver:8000/ajax/users",
+            dataUrl: "http://localhost:8000/ajax/users",
             sortableColumns: ["id", "username", "email", "isActive", "role"],
             filterableColumns: ["id", "username", "email", "isActive", "role"],
             rowsPerPage: 15

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use KMS\FroalaEditorBundle\Form\Type\FroalaEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -31,7 +32,9 @@ class NewsForm extends AbstractType
                 )
         );
         $builder->add('description', TextareaType::class);
-        $builder->add('body', TextareaType::class);
+        $builder->add(
+            'body', FroalaEditorType::class, array("language" => "en_gb")
+        );
     }
 
     public function configureOptions(OptionsResolver $resolver)

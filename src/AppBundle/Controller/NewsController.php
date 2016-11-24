@@ -2,30 +2,26 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Article;
-use AppBundle\Form\NewsForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class NewsController extends Controller
 {
-    public function creationAction(Request $request)
+    public function indexAction($slug)
     {
-        $article = new Article();
-
-        $form = $this->createForm(NewsForm::class, $article);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($article);
-            $em->flush();
-            return $this->redirectToRoute('create_article');
-        }
-
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
+        $article = $repository->findOneBy(array('id' => $slug));
+        $article->setViews($article->getViews()+1);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($article);
+        $em->flush();
         return $this->render(
-            'news/newsEdit.html.twig', array(
-            'form' => $form->createView()
+            'news/newsPage.html.twig', array(
+                'title' => $article->getTitle(),
+                'author' => $article->getAuthor(),
+                'category' => $article->getCategory()->getName(),
+                'publicationDate' => $article->getPublicationDate(),
+                'views' => $article->getViews(),
+                'body' => $article->getBody(),
             )
         );
     }

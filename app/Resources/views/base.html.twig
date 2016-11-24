@@ -10,9 +10,9 @@
         <link rel="mask-icon" href="{{ asset('favicons/safari-pinned-tab.svg') }}" color="#5bbad5">
         <meta name="theme-color" content="#ffffff">
         {%block stylesheets%}
-            {% stylesheets '@bootstrap_css'%}
+            {% stylesheets '@bootstrap_css' '@froala_style'%}
                 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
-                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/navbar_fixes.css') }}"/>
+                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/style_fixes.css') }}"/>
             {% endstylesheets %}
         {% endblock %}
     </head>
@@ -21,7 +21,7 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="{{ path('welcome') }}">
+                        <a class="navbar-brand" href="{{ path('news') }}">
                             <img src="{{ asset('assets/logo.svg') }}" width="50" height="50">
                         </a>
                         <form class="navbar-form navbar-left" role="search">
@@ -61,7 +61,7 @@
         {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
-            {% javascripts '@jquery' '@autoresize' '@bootstrap_js'%}
+            {% javascripts '@jquery' '@autoresize' '@bootstrap_js' '@froala_editor'%}
             <script type="text/javascript" src="{{ asset_url }}"></script>
             <script type="text/javascript">
                 jQuery(function()
