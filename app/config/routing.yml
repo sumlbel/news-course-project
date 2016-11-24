@@ -28,9 +28,14 @@ default:
     defaults: { _controller: AppBundle:Login:login }
     requirements:
         _locale: en|ru|be
+delete_article:
+    path:     /{_locale}/delete/{slug}
+    defaults: { _controller: AppBundle:News:delete}
+    requirements:
+        _locale: en|ru|be
 create_article:
     path:     /{_locale}/create
-    defaults: { _controller: AppBundle:Article:creation }
+    defaults: { _controller: AppBundle:ArticleEdit:creation }
     requirements:
         _locale: en|ru|be
 login:

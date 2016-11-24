@@ -74,7 +74,6 @@ class PasswordRecoveryController extends Controller
 
     private function _sendRecoveryInfo(User $user)
     {
-
         $url = $this->_generateRecoveryInfo($user);
 
         $message = \Swift_Message::newInstance()
@@ -95,7 +94,7 @@ class PasswordRecoveryController extends Controller
     private function _generateRecoveryInfo(User $user)
     {
         $tokenGenerator = new TokenGenerator();
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user->setConfirmationToken($tokenGenerator->generateToken());
         $em->flush();
         $url = $this->generateUrl(
@@ -108,7 +107,7 @@ class PasswordRecoveryController extends Controller
 
     private function _changePassword(User $user, $password)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $user->setPlainPassword($password);
         $password = $this->get('security.password_encoder')
             ->encodePassword($user, $user->getPlainPassword());

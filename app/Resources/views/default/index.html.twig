@@ -7,14 +7,13 @@
         <table class="nav-tabs table-condensed" title="Sort by:">
             <tr class="small">
                 <th>Sort by:</th>
-                {# sorting of properties based on query components #}
                 <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Release date', 'a.publicationDate') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Category', 'cat.name') }}</th>
+                {{ knp_pagination_sortable(pagination, 'Category', 'cat.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination,
+                    'Release date', 'a.publicationDate', {direction:'desc'}) }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Views', 'a.views', {direction:'desc'}) }}</th>
             </tr>
-        </table>
-    <br>
+        </table><br>
         {% for article in pagination %}
             <div class="margin-height-4">
                 <a  href="{{ path('article', {'slug': article.id}) }}" class="block-link">
@@ -25,6 +24,7 @@
                     <ul class="small attributes list-inline">
                         <li>{{ article.publicationDate | date('d M Y') }}</li>
                         <li class="margin-left-8">{{ article.category.name }}</li>
+                        <li class="margin-left-8">{{ article.views }} views</li>
                     </ul>
                     <div>
                         {{ article.description }}
@@ -32,7 +32,6 @@
                 </a>
             </div>
         {% endfor %}
-        {# display navigation #}
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>

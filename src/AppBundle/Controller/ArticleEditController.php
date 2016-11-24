@@ -7,7 +7,7 @@ use AppBundle\Form\NewsForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class ArticleController extends Controller
+class ArticleEditController extends Controller
 {
     public function creationAction(Request $request)
     {

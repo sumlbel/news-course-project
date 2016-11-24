@@ -16,25 +16,26 @@ class NewsForm extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('title', TextType::class);
-        $builder->add('author', TextType::class);
-        $builder->add(
-            'category', EntityType::class, array(
-                'class' => 'AppBundle:Category',
-                'choice_label' => 'name',
-                'placeholder' => 'Choose category',
+        $builder
+            ->add('title', TextType::class)
+            ->add('author', TextType::class)
+            ->add(
+                'category', EntityType::class, array(
+                    'class' => 'AppBundle:Category',
+                    'choice_label' => 'name',
+                    'placeholder' => 'Choose category',
+                    )
             )
-        );
-        $builder->add(
-            'publicationDate', DateType::class, array(
-                'format' => 'dd MMMM yyyy',
-                'data' => new \DateTime(),
-                )
-        );
-        $builder->add('description', TextareaType::class);
-        $builder->add(
-            'body', FroalaEditorType::class, array("language" => "en_gb")
-        );
+            ->add(
+                'publicationDate', DateType::class, array(
+                    'format' => 'dd MMMM yyyy',
+                    'data' => new \DateTime(),
+                    )
+            )
+            ->add('description', TextareaType::class)
+            ->add(
+                'body', FroalaEditorType::class, array("language" => "en_gb")
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -44,10 +45,5 @@ class NewsForm extends AbstractType
                 'data_class' => 'AppBundle\Entity\Article',
             )
         );
-    }
-
-    public function getBlockPrefix()
-    {
-        return 'news_form';
     }
 }

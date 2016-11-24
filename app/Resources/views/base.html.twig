@@ -61,14 +61,8 @@
         {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
-            {% javascripts '@jquery' '@autoresize' '@bootstrap_js' '@froala_editor'%}
+            {% javascripts '@jquery' '@bootstrap_js' '@froala_editor'%}
             <script type="text/javascript" src="{{ asset_url }}"></script>
-            <script type="text/javascript">
-                jQuery(function()
-                {
-                    jQuery('textarea').autoResize();
-                });
-            </script>
             {% endjavascripts %}
         {% endblock %}
     </body>

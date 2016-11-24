@@ -17,7 +17,7 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         $qb->select('a')
             ->from('AppBundle:Article', 'a')
             ->join('a.category', 'cat')
-            ->orderBy('a.title', 'ASC');
+            ->orderBy('a.publicationDate', 'DESC');
         return $qb->getQuery();
     }
 }
