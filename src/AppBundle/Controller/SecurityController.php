@@ -3,9 +3,8 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class LoginController extends Controller
+class SecurityController extends Controller
 {
     public function loginAction()
     {

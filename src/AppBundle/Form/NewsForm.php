@@ -29,7 +29,6 @@ class NewsForm extends AbstractType
             ->add(
                 'publicationDate', DateType::class, array(
                     'format' => 'dd MMMM yyyy',
-                    'data' => new \DateTime(),
                     )
             )
             ->add('description', TextareaType::class)
@@ -43,6 +42,7 @@ class NewsForm extends AbstractType
         $resolver->setDefaults(
             array(
                 'data_class' => 'AppBundle\Entity\Article',
+                'isNew' => true
             )
         );
     }

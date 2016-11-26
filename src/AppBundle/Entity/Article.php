@@ -235,5 +235,6 @@ class Article
     public function __construct()
     {
         $this->setViews(0);
+        $this->setPublicationDate(new \DateTime());
     }
 }

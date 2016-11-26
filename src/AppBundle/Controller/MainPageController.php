@@ -24,4 +24,14 @@ class MainPageController extends Controller
             'default/index.html.twig',
             array('pagination' => $pagination));
     }
+
+    public function redirectToUsersLocaleAction(Request $request)
+    {
+        $request->getLocale();
+        return $this->redirectToRoute(
+            'main', array(
+                '_locale' => $request->getLocale()
+            )
+        );
+    }
 }

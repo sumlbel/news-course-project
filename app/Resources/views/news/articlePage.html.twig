@@ -19,8 +19,8 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ path('create_article') }}">Edit</a></li>
-                    <li><a href="{{ path('delete_article', {'slug': id}) }}"
+                    <li><a href="{{ path('edit_article', {'id': id}) }}">Edit</a></li>
+                    <li><a href="{{ path('delete_article', {'id': id}) }}"
                            onclick="return confirm('Are you sure?');">Delete</a></li>
                 </ul>
             </li>
@@ -29,5 +29,8 @@
         <span class="fr-view">
             {{ body|raw }}
         </span>
+    </div>
+    <div class="text-align-center margin-height-4">
+        <a href="{{ path('about') }}" class="gray-link">About Newscast</a>
     </div>
 {% endblock %}

@@ -4,8 +4,8 @@ about:
     requirements:
         _locale: en|ru|be
 access_denied:
-    path:     /login
-    defaults: { _controller: AppBundle:Login:login }
+    path:     /access_denied
+    defaults: { _controller: AppBundle:AccessDenied:index}
     requirements:
         _locale: en|ru|be
 admin:
@@ -23,24 +23,24 @@ ajaxAryicles:
     defaults: { _controller: AppBundle:AjaxArticles:articlesList}
     requirements:
         _locale: en|ru|be
-default:
-    path:     /
-    defaults: { _controller: AppBundle:Login:login }
+article:
+    path:     /{_locale}/news/{id}
+    defaults: { _controller: AppBundle:Article:index}
+    requirements:
+        _locale: en|ru|be
+edit_article:
+    path:     /{_locale}/edit/{id}
+    defaults: { _controller: AppBundle:ArticleEdit:edit }
     requirements:
         _locale: en|ru|be
 delete_article:
-    path:     /{_locale}/delete/{slug}
-    defaults: { _controller: AppBundle:News:delete}
-    requirements:
-        _locale: en|ru|be
-create_article:
-    path:     /{_locale}/create
-    defaults: { _controller: AppBundle:ArticleEdit:creation }
+    path:     /{_locale}/delete/{id}
+    defaults: { _controller: AppBundle:Article:delete}
     requirements:
         _locale: en|ru|be
 login:
     path:     /{_locale}/login
-    defaults: { _controller: AppBundle:Login:login }
+    defaults: { _controller: AppBundle:Security:login }
     requirements:
         _locale: en|ru|be
 logout:
@@ -50,19 +50,12 @@ moderating_articles:
     defaults: { _controller: AppBundle:Moderator:moderatingArticles}
     requirements:
         _locale: en|ru|be
-news_default:
-    path:     /news
-    defaults: { _controller: AppBundle:MainPage:index, _locale: en }
-    requirements:
-        _locale: en|ru|be
-news:
-    path:     /{_locale}/news
+main_default:
+    path:     /
+    defaults: { _controller: AppBundle:MainPage:redirectToUsersLocale }
+main:
+    path:     /{_locale}/
     defaults: { _controller: AppBundle:MainPage:index }
-    requirements:
-        _locale: en|ru|be
-article:
-    path:     /{_locale}/news/{slug}
-    defaults: { _controller: AppBundle:News:index}
     requirements:
         _locale: en|ru|be
 recovery:

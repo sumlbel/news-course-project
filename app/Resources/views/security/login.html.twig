@@ -5,9 +5,10 @@
 {% block body %}
     <div class="block-width-40 margin-left-8">
         {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
         {% endif %}
-
         <form class="form" action="{{ path('login') }}" method="post">
             <div class="form-group">
                 <label for="username">Email</label>
@@ -27,9 +28,8 @@
         </div>
 
         {% for flashMessage in app.session.flashbag.get('can-login') %}
-            <div  class="alert alert-success">
+            <div class="alert alert-success">
                 {{ flashMessage }}
             </div>
         {% endfor %}
-    </div>
 {% endblock %}

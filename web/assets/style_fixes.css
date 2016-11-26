@@ -97,3 +97,19 @@ div.hr hr {
     z-index: 1;
     display: block;
 }
+
+.text-align-center {
+    text-align: center;
+}
+
+.gray-link {
+    color: #404040;
+    font-weight: 600;
+    font-size: 2vh;
+}
+
+.gray-link:hover {
+    color: #303030;
+    text-decoration: none;
+    text-shadow: 0px 0px 1vh #808080;
+}

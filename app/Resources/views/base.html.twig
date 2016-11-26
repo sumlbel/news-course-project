@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Newscast{% endblock %}</title>
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicons/apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" href="{{ asset('favicons/favicon-32x32.png') }}" sizes="32x32">
         <link rel="icon" type="image/png" href="{{ asset('favicons/favicon-16x16.png') }}" sizes="16x16">
@@ -21,39 +21,41 @@
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="{{ path('news') }}">
+                        <a class="navbar-brand" href="{{ path('main') }}">
                             <img src="{{ asset('assets/logo.svg') }}" width="50" height="50">
                         </a>
+                        {% if is_granted('ROLE_USER') %}
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Search">
                             </div>
                             <button type="submit" class="btn btn-default">Search</button>
                         </form>
+                        {% endif %}
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         {% if not is_granted('ROLE_USER') %}
                             <li><a href="{{ path('login') }}">Log in</a></li>
                             <li><a href="{{ path('user_registration') }}">Sign up</a></li>
                         {% endif %}
-                        {% if is_granted('ROLE_MODERATOR') %}
+                        {% if is_granted('ROLE_USER') %}
                             <li>
                                 <button class="dropdown-toggle btn-link"
-                                        type="button" data-toggle="dropdown">Moderator
+                                        type="button" data-toggle="dropdown">{{ app.user.username }}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ path('create_article') }}">Create article</a></li>
-                                    <li><a href="{{ path('moderating_articles') }}">Manage articles</a></li>
+                                    {% if is_granted('ROLE_MODERATOR') %}
+                                        <li><a href="{{ path('edit_article', {'id': 'new'}) }}">Create article</a></li>
+                                        <li><a href="{{ path('moderating_articles') }}">Manage articles</a></li>
+                                    {% endif %}
+
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <li><a href="{{ path('admin') }}">Manage users</a></li>
+                                    {% endif %}
+                                    <li><a href="{{ path('logout') }}">Logout</a></li>
                                 </ul>
                             </li>
-                        {% endif %}
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('admin') }}">Manage users</a></li>
-                        {% endif %}
-                        {% if is_granted('ROLE_USER') %}
-                            <li><a href="{{ path('about') }}">About</a></li>
-                            <li><a href="{{ path('logout') }}">Logout</a></li>
                         {% endif %}
                     </ul>
                 </div>

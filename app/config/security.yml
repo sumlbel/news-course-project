@@ -21,27 +21,22 @@ security:
                 provider: user_provider
                 username_parameter: _email
                 always_use_default_target_path: true
-                default_target_path:            /news
+                default_target_path:            /
             logout:
-                path:   /logout
-                target: /
+                path:   logout
+                target: login
 
     access_control:
-        - { path: /login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /recovery, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: /reset, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: /about, roles: ROLE_USER}
+        - { path: /ajax, roles: ROLE_USER}
         - { path: /moderating_articles, roles: ROLE_MODERATOR}
         - { path: /create, roles: ROLE_MODERATOR}
         - { path: /admin, roles: ROLE_ADMIN }
-        - { path: /ajax, roles: ROLE_USER}
-        - { path: /news, roles: ROLE_USER }
 
     encoders:
         AppBundle\Entity\User:
             algorithm: bcrypt
 
     role_hierarchy:
-        ROLE_USER:        IS_AUTHENTICATED_ANONYMOUSLY
         ROLE_MODERATOR:   ROLE_USER
         ROLE_ADMIN:       ROLE_MODERATOR
