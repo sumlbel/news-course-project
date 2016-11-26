@@ -73,6 +73,10 @@ div.hr hr {
     margin-left: 6vw;
 }
 
+.margin-0 {
+    margin: 0px;
+}
+
 .block-link {
     color: inherit;
     padding: 3vh;

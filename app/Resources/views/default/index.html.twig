@@ -7,7 +7,6 @@
                 <tr class="small">
                     <th>Sort by:</th>
                     <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
-                    {{ knp_pagination_sortable(pagination, 'Category', 'cat.name') }}</th>
                     <th>{{ knp_pagination_sortable(pagination,
                         'Release date', 'a.publicationDate', {direction:'desc'}) }}</th>
                     <th>{{ knp_pagination_sortable(pagination, 'Views', 'a.views', {direction:'desc'}) }}</th>

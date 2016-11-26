@@ -128,3 +128,18 @@ kms_froala_editor:
     saveInterval: 2500
     saveParam: "content"
     heightMin: 600
+
+services:
+    main.menu_builder:
+        class:     AppBundle\Service\MenuBuilder
+        arguments: ['@knp_menu.factory', '@doctrine.orm.entity_manager']
+        tags:
+            - { name: knp_menu.menu_builder, method: mainMenu, alias: main }
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: menu/knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig

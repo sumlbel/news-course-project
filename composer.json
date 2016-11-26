@@ -32,7 +32,9 @@
         "components/bootstrap": "^3.3",
         "symfony/assetic-bundle": "^2.8",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "kms/froala-editor-bundle": "dev-master"
+        "kms/froala-editor-bundle": "dev-master",
+        "knplabs/knp-menu-bundle": "^2.1",
+        "knplabs/knp-menu": "^2.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
