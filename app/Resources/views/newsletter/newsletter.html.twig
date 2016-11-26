@@ -1,0 +1,16 @@
+<body>
+    <h1>Hello, {{ username }}!</h1>
+
+    Look at the most popular articles today:
+    <br>
+    {% for article in articles %}
+        <br>
+        <a  href="{{ url('article', {'id': article.id, '_locale': 'en'}, schemeRelative = false) }}">
+            {{ article.title }}
+        </a>
+        <br>
+    {% endfor %}
+    <p>
+    Sincerely yours,<br>
+    Newscast team.</p>
+</body>

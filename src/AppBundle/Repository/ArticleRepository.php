@@ -20,4 +20,20 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
             ->orderBy('a.publicationDate', 'DESC');
         return $qb->getQuery();
     }
+
+    public function findTodaysBest($today, $number)
+    {
+        $from = new \DateTime($today->format("Y-m-d")." 00:00:00");
+        $to   = new \DateTime($today->format("Y-m-d")." 23:59:59");
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('a')
+            ->from('AppBundle:Article', 'a')
+            ->andWhere('a.publicationDate BETWEEN :from AND :to')
+            ->setParameter('from', $from)
+            ->setParameter('to', $to)
+            ->orderBy('a.views', 'DESC')
+            ->setMaxResults($number);
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -30,7 +30,7 @@ article:
         _locale: en|ru|be
 edit_article:
     path:     /{_locale}/edit/{id}
-    defaults: { _controller: AppBundle:ArticleEdit:edit }
+    defaults: { _controller: AppBundle:Article:edit }
     requirements:
         _locale: en|ru|be
 delete_article:
