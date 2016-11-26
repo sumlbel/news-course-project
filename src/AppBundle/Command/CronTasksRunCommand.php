@@ -4,15 +4,12 @@ namespace AppBundle\Command;
 
 
 use AppBundle\Entity\User;
-use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CronTasksRunCommand extends ContainerAwareCommand
 {
-    private $output;
-
     protected function configure()
     {
         $this

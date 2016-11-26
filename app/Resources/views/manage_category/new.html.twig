@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center lead">Category creation</h1>
+
+
+    <div class="block-width-40 center-block">
+        <table class="block-width-40">
+            <tr>
+                {% form_theme form 'bootstrap_3_layout.html.twig' %}
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+            </tr>
+            <tr>
+                <th>
+                    <a class="btn-default btn" href="{{ path('category_index') }}" role="button">
+                        Back to the list
+                    </a>
+                </th>
+                <th>
+                    <input class="btn-primary btn margin-left-8" type="submit" value="Create" />
+                    {{ form_end(form) }}
+                </th>
+            </tr>
+        </table>
+    </div>
+{% endblock %}

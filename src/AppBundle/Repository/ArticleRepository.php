@@ -21,6 +21,18 @@ class ArticleRepository extends \Doctrine\ORM\EntityRepository
         return $qb->getQuery();
     }
 
+    public function findByCategory($id)
+    {
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('a')
+            ->from('AppBundle:Article', 'a')
+            ->where($qb->expr()->eq('a.category', $id))
+            ->join('a.category', 'cat')
+            ->orderBy('a.publicationDate', 'DESC');
+        return $qb->getQuery();
+    }
+
     public function findTodaysBest($today, $number)
     {
         $from = new \DateTime($today->format("Y-m-d")." 00:00:00");

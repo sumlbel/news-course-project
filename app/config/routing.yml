@@ -1,3 +1,7 @@
+app_category:
+    resource: "@AppBundle/Controller/CategoryController.php"
+    type:     annotation
+
 about:
     path:     /{_locale}/about
     defaults: { _controller: AppBundle:About:index }
@@ -14,15 +18,11 @@ admin:
     requirements:
         _locale: en|ru|be
 ajaxUsers:
-    path:     /{_locale}/ajax/users
+    path:     /ajax/users
     defaults: { _controller: AppBundle:AjaxUsers:usersList}
-    requirements:
-        _locale: en|ru|be
-ajaxAryicles:
-    path:     /{_locale}/ajax/articles
+ajaxArticles:
+    path:     /ajax/articles
     defaults: { _controller: AppBundle:AjaxArticles:articlesList}
-    requirements:
-        _locale: en|ru|be
 article:
     path:     /{_locale}/news/{id}
     defaults: { _controller: AppBundle:Article:index}
@@ -30,7 +30,7 @@ article:
         _locale: en|ru|be
 category:
     path:     /{_locale}/category/{id}
-    defaults: { _controller: AppBundle:Category:index}
+    defaults: { _controller: AppBundle:MainPage:filterByCategory}
     requirements:
         _locale: en|ru|be
 delete_article:
@@ -60,7 +60,7 @@ main_default:
     defaults: { _controller: AppBundle:MainPage:redirectToUsersLocale }
 main:
     path:     /{_locale}/
-    defaults: { _controller: AppBundle:MainPage:index }
+    defaults: { _controller: AppBundle:MainPage:noFilter }
     requirements:
         _locale: en|ru|be
 recovery:
@@ -71,6 +71,11 @@ recovery:
 reset_password:
     path:     /{_locale}/reset/{token}
     defaults: { _controller: AppBundle:PasswordRecovery:reset }
+    requirements:
+        _locale: en|ru|be
+search:
+    path:     /{_locale}/search
+    defaults: { _controller: AppBundle:MainPage:search }
     requirements:
         _locale: en|ru|be
 user_registration:

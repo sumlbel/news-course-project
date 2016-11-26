@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-align-center lead">Categories list</h1>
+
+    <table class="table table-grid">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    <a class="btn-default btn-sm gray-link" href="{{ path('category_edit', { 'id': category.id }) }}">Edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="margin-height-4 text-center">
+            <a class="btn btn-info" href="{{ path('category_new') }}">
+                Create a new category
+            </a>
+    </div>
+{% endblock %}

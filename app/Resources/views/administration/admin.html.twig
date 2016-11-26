@@ -4,16 +4,19 @@
 
 {% block body %}
     <header>
-        <h1 class="text-center">Admin page</h1>
+        <h1 class="text-center lead">Manage articles</h1>
     </header>
     <div id="entities-grid"></div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
     <script src={{ asset('assets/ajaxgrid.js') }}></script>
     <script>
         $("#entities-grid").ajaxgrid({
             dataUrl: "http://localhost:8000/ajax/users",
             sortableColumns: ["id", "username", "email", "isActive", "role"],
             filterableColumns: ["id", "username", "email", "isActive", "role"],
-            rowsPerPage: 15
+            rowsPerPage: 5
         });
     </script>
 {% endblock %}

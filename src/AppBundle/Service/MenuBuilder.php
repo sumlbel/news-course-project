@@ -17,8 +17,7 @@ class MenuBuilder
     private $factory;
     private $em;
 
-    public function __construct(FactoryInterface $factory,
-        EntityManager $em)
+    public function __construct(FactoryInterface $factory, EntityManager $em)
     {
         $this->factory = $factory;
         $this->em = $em;
@@ -36,8 +35,7 @@ class MenuBuilder
 
         $listCategories = $this->em->getRepository('AppBundle:Category')->findAll();
 
-        foreach ($listCategories as $category)
-        {
+        foreach ($listCategories as $category) {
             $menu['category']->addChild(
                 'category' . $category->getName(),
                 array(

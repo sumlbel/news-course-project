@@ -3,19 +3,21 @@
 namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 class AjaxUsersController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     */
     public function usersListAction(Request $request)
     {
         $users = $this->_getRequestedUsers($request);
-        $array = array();
-        foreach ($users as $user) {
-            $array = $this->_serialize($array, $user);
-        }
-        return $this->json($array);
+        $arrayCollection = $this->_serialize($request, $users);
+        return new JsonResponse($arrayCollection);
     }
 
     private function _filterField($filterField, $pattern){
@@ -32,23 +34,25 @@ class AjaxUsersController extends Controller
      * @param User $user
      * @return array
      */
-    private function _serialize($array, User $user)
+    private function _serialize(Request $request, $users)
     {
-        $array = array_merge(
-            $array,
-            array(
-                $user->getId() =>
-                    array(
-                        'id' => $user->getId(),
-                        'username' => $user->getUsername(),
-                        'email' => $user->getEmail(),
-                        'isActive' => $user->getIsActive(),
-                        'role' => $user->getRoles()
-                    )
-            )
-        );
-
-        return $array;
+        $page = $request->query->get('page', 0);
+        $usersPerPage = $request->query->get('rows', 15);
+        $count = count($users);
+        $start = $usersPerPage * $page;
+        $end = $usersPerPage * ($page + 1);
+        $end = ($end >= $count)?$count:$end;
+        $arrayData = array();
+        for ($i=$start; $i<$end && $i<$count;$i++) {
+            $arrayData[] = array(
+                'id' => $users[$i]->getId(),
+                'username' => $users[$i]->getUsername(),
+                'email' => $users[$i]->getEmail(),
+                'isActive' => $users[$i]->getIsActive(),
+                'role' => $users[$i]->getRoles()
+            );
+        }
+        return array('rows' => $count, 'data' => $arrayData);
     }
 
     /**
@@ -57,20 +61,16 @@ class AjaxUsersController extends Controller
      */
     private function _getRequestedUsers(Request $request)
     {
-        $usersPerPage = 15;
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
         $sortByField = $request->query->get('sortbyfield', 'username');
         $order = $request->query->get('order', 'asc');
-        $filterField = $request->query->get('filterbyfield');
         $pattern = $request->query->get('pattern');
-        $page = $request->query->get('page', 1) - 1;
+        $filterField = $request->query->get('filterbyfield');
         $users = $repository->findBy(
             $this->_filterField($filterField, $pattern),
             array(
                 $sortByField => $order
-            ),
-            $usersPerPage,
-            $page * $usersPerPage
+            )
         );
 
         return $users;

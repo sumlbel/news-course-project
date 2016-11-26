@@ -75,6 +75,17 @@ div.hr hr {
 
 .margin-0 {
     margin: 0px;
+    border: none;
+}
+.table-grid {
+    border-radius: 5px;
+    width: 70%;
+    margin: 0px auto;
+    float: none;
+}
+
+.sortable {
+    cursor: pointer;
 }
 
 .block-link {

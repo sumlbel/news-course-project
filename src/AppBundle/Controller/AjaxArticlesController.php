@@ -4,18 +4,16 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class AjaxArticlesController extends Controller
 {
     public function articlesListAction(Request $request)
     {
-        $articles = $this->_getRequestedArticles($request);
-        $array = array();
-        foreach ($articles as $article) {
-            $array = $this->_serialize($array, $article);
-        }
-        return $this->json($array);
+        $articles = $this->_getRequestedarticles($request);
+        $arrayCollection = $this->_serialize($request, $articles);
+        return new JsonResponse($arrayCollection);
     }
 
     private function _filterField($filterField, $pattern){
@@ -32,45 +30,44 @@ class AjaxArticlesController extends Controller
      * @param Article $article
      * @return array
      */
-    private function _serialize($array, Article $article)
+    private function _serialize(Request $request, $articles)
     {
-        $array = array_merge(
-            $array,
-            array(
-                $article->getId() =>
-                    array(
-                        'id' => $article->getId(),
-                        'title' => $article->getTitle(),
-                        'category' => $article->getCategory(),
-                        'publication date' => $article->getPublicationDate(),
-                        'description' => $article->getDescription()
-                    )
-            )
-        );
-
-        return $array;
+        $page = $request->query->get('page', 0);
+        $articlesPerPage = $request->query->get('rows', 15);
+        $count=count($articles);
+        $start = $articlesPerPage * $page;
+        $end = $articlesPerPage * ($page + 1);
+        $end = ($end >= $count)?$count:$end;
+        $arrayData = array();
+        for ($i=$start; $i<$end;$i++) {
+            $arrayData[] = array(
+                'id' => $articles[$i]->getId(),
+                'title' => $articles[$i]->getTitle(),
+                'author' => $articles[$i]->getAuthor(),
+                'category' => $articles[$i]->getCategory()->getName(),
+                'publicationDate' =>
+                    $articles[$i]->getPublicationDate()->format('d-M-Y')
+            );
+        }
+        return array('rows' => $count, 'data' => $arrayData);
     }
 
     /**
      * @param Request $request
      * @return \AppBundle\Entity\Article[]|array
      */
-    private function _getRequestedArticles(Request $request)
+    private function _getRequestedarticles(Request $request)
     {
-        $articlesPerPage = 15;
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
         $sortByField = $request->query->get('sortbyfield', 'title');
         $order = $request->query->get('order', 'asc');
-        $filterField = $request->query->get('filterbyfield');
         $pattern = $request->query->get('pattern');
-        $page = $request->query->get('page', 1) - 1;
+        $filterField = $request->query->get('filterbyfield');
         $articles = $repository->findBy(
             $this->_filterField($filterField, $pattern),
             array(
                 $sortByField => $order
-            ),
-            $articlesPerPage,
-            $page * $articlesPerPage
+            )
         );
 
         return $articles;
