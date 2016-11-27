@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class MainPageController extends Controller
 {
-    public $articlesPerPage = 5;
+    public $articlesPerPage = 8;
     public function noFilterAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
@@ -21,34 +21,41 @@ class MainPageController extends Controller
         );
 
         return $this->render(
-            'default/index.html.twig',
+            'default/main.html.twig',
             array('pagination' => $pagination));
     }
 
     public function filterByCategoryAction(Request $request, $id)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $articles = $repository->findByCategory($id);
+        $repositoryArticles = $this->getDoctrine()->getRepository(
+            'AppBundle:Article'
+        );
+        $articles = $repositoryArticles->findByCategory($id);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $articles,
             $request->query->getInt('page', 1),
             $this->articlesPerPage
         );
+        $repositoryCategory = $this->getDoctrine()->getRepository(
+            'AppBundle:Category'
+        );
+        $categoryName = $repositoryCategory->findOneBy(
+            array('id' => $id)
+        )->getName();
 
         return $this->render(
-            'default/index.html.twig',
-            array('pagination' => $pagination));
+            'default/category.html.twig',
+            array('pagination' => $pagination, 'categoryName' => $categoryName)
+        );
     }
 
     public function searchAction(Request $request)
     {
-        $finder = $request->get('fos_elastica.finder.app.user');
-        $query = new Query();
-        $search = $request->query->get('search');
-        $search = $finder->find($query);
+        $finder = $this->container->get('fos_elastica.finder.app.article');
+        $search = $request->get('_search');
         $paginator = $this->get('knp_paginator');
-        $results = $finder->createPaginationAdapter;
+        $results = $finder->createPaginatorAdapter($search);
         $pagination = $paginator->paginate(
             $results,
             $request->query->getInt('page', 1),
@@ -56,7 +63,7 @@ class MainPageController extends Controller
         );
 
         return $this->render(
-            'default/index.html.twig',
+            'default/main.html.twig',
             array('pagination' => $pagination)
         );
     }

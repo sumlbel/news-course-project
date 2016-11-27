@@ -27,7 +27,6 @@ class MenuBuilder
     {
         $menu = $this->factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
-
         $menu->addChild(
             'category',
             array('label' => 'Categories')
@@ -43,7 +42,7 @@ class MenuBuilder
                     'route' => 'category',
                     'routeParameters' => array('id' => $category->getId())
                 )
-            );
+            )->setExtra('translation_domain', false);
         }
 
         return $menu;

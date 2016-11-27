@@ -4,15 +4,30 @@
 
 {% block body %}
     <header>
-        <h1 class="text-center">About Newscast</h1>
+        <h1 class="text-center">
+            {% trans %}
+            About Newscast
+            {% endtrans %}
+        </h1>
     </header>
     <article class="block-width-80 center-block">
-        <p class="lead">Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky
-            in itransition.</p>
-        <p class="lead">Icons made by
+        <p class="lead">
+            {% trans %}
+            Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky in itransition.
+            {% endtrans %}
+        </p>
+        <p class="lead">
+            {% trans %}
+            Icons made by
+            {% endtrans %}
             <a href="http://www.flaticon.com/authors/madebyoliver" title="Madebyoliver">Madebyoliver</a>
-            from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
-            is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"
-                              title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+            {% trans %}
+            from
+            {% endtrans %} <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
+            {% trans %}
+            is licensed by
+            {% endtrans %} <a href="http://creativecommons.org/licenses/by/3.0/"
+                              title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+        </p>
     </article>
 {% endblock %}

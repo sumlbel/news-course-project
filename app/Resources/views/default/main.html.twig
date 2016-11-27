@@ -3,7 +3,7 @@
 {% block body %}
     {% if is_granted('ROLE_USER') %}
         <div class="center-block block-width-80">
-            <table class="nav-tabs table-condensed" title="Sort by:">
+            <table class="nav-tabs table-condensed" title="{% trans %}Sort by:{% endtrans %}">
                 <tr class="small">
                     <th>Sort by:</th>
                     <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
@@ -21,8 +21,12 @@
                         <div class="hr"></div>
                         <ul class="small attributes list-inline">
                             <li>{{ article.publicationDate | date('d M Y') }}</li>
-                            <li class="margin-left-8">{{ article.category.name }}</li>
-                            <li class="margin-left-8">{{ article.views }} views</li>
+                            <li class="margin-left-8">{{ article.category.name|trans }}</li>
+                            <li class="margin-left-8">{{ article.views }}
+                                {% trans %}
+                                views
+                                {% endtrans %}
+                            </li>
                         </ul>
                         <div>
                             {{ article.description }}
@@ -35,11 +39,17 @@
             </div>
         <div>
         <div class="text-align-center margin-height-4">
-            <a href="{{ path('about') }}" class="gray-link">About Newscast</a>
+            <a href="{{ path('about') }}" class="gray-link">
+                {% trans %}
+                About Newscast
+                {% endtrans %}
+            </a>
         </div>
     {% else %}
         <div  class="alert alert-warning block-width-40 center-block">
+            {% trans %}
             You have to log in to watch news
+            {% endtrans %}
         </div>
     {% endif %}
 {% endblock %}

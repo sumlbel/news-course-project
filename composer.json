@@ -35,7 +35,8 @@
         "kms/froala-editor-bundle": "dev-master",
         "knplabs/knp-menu-bundle": "^2.1",
         "knplabs/knp-menu": "^2.2",
-        "symfony/serializer": "^3.1"
+        "symfony/serializer": "^3.1",
+        "friendsofsymfony/elastica-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

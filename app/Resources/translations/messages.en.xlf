@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="Categories">
+                <source>Categories</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="Previous">
+                <source>Previous</source>
+                <target>Previous</target>
+            </trans-unit>
+            <trans-unit id="Next">
+                <source>Next</source>
+                <target>Next</target>
+            </trans-unit>
+            <trans-unit id="Breaking News">
+                <source>Breaking News</source>
+                <target>Breaking News</target>
+            </trans-unit>
+            <trans-unit id="Environmental">
+                <source>Environmental</source>
+                <target>Environmental</target>
+            </trans-unit>
+            <trans-unit id="Colleges and Universities">
+                <source>Colleges and Universities</source>
+                <target>Colleges and Universities</target>
+            </trans-unit>
+            <trans-unit id="Current Events">
+                <source>Current Events</source>
+                <target>Current Events</target>
+            </trans-unit>
+            <trans-unit id="Government">
+                <source>Government</source>
+                <target>Government</target>
+            </trans-unit>
+            <trans-unit id="Magazines">
+                <source>Magazines</source>
+                <target>Magazines</target>
+            </trans-unit>
+            <trans-unit id="Media">
+                <source>Media</source>
+                <target>Media</target>
+            </trans-unit>
+            <trans-unit id="Newspapers">
+                <source>Newspapers</source>
+                <target>Newspapers</target>
+            </trans-unit>
+            <trans-unit id="Politics">
+                <source>Politics</source>
+                <target>Politics</target>
+            </trans-unit>
+            <trans-unit id="Regional News">
+                <source>Regional News</source>
+                <target>Regional News</target>
+            </trans-unit>
+            <trans-unit id="Religion and Spirituality">
+                <source>Religion and Spirituality</source>
+                <target>Religion and Spirituality</target>
+            </trans-unit>
+            <trans-unit id="Sports">
+                <source>Sports</source>
+                <target>Sports</target>
+            </trans-unit>
+            <trans-unit id="Technology">
+                <source>Technology</source>
+                <target>Technology</target>
+            </trans-unit>
+            <trans-unit id="Traffic and Roads">
+                <source>Traffic and Roads</source>
+                <target>Traffic and Roads</target>
+            </trans-unit>
+            <trans-unit id="Weather">
+                <source>Weather</source>
+                <target>Weather</target>
+            </trans-unit>
+            <trans-unit id="Weblogs">
+                <source>Weblogs</source>
+                <target>Weblogs</target>
+            </trans-unit>
+            <trans-unit id="You have to log in to watch news">
+                <source>You have to log in to watch news</source>
+                <target>You have to log in to watch news</target>
+            </trans-unit>
+            <trans-unit id="About Newscast">
+                <source>About Newscast</source>
+                <target>About Newscast</target>
+            </trans-unit>
+            <trans-unit id="views">
+                <source>views</source>
+                <target>views</target>
+            </trans-unit>
+            <trans-unit id="Search">
+                <source>Search</source>
+                <target>Search</target>
+            </trans-unit>
+            <trans-unit id="Create article">
+                <source>Create article</source>
+                <target>Create article</target>
+            </trans-unit>
+            <trans-unit id="Manage categories">
+                <source>Manage categories</source>
+                <target>Manage categories</target>
+            </trans-unit>
+            <trans-unit id="Manage articles">
+                <source>Manage articles</source>
+                <target>Manage articles</target>
+            </trans-unit>
+            <trans-unit id="Manage users">
+                <source>Manage users</source>
+                <target>Manage users</target>
+            </trans-unit>
+            <trans-unit id="Logout">
+                <source>Logout</source>
+                <target>Logout</target>
+            </trans-unit>
+            <trans-unit id="Sort by:">
+                <source>Sort by:</source>
+                <target>Sort by:</target>
+            </trans-unit>
+            <trans-unit id="Edit">
+                <source>Edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="Are you sure?">
+                <source>Are you sure?</source>
+                <target>Are you sure?</target>
+            </trans-unit>
+            <trans-unit id="Delete">
+                <source>Delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="Settings">
+                <source>Settings</source>
+                <target>Settings</target>
+            </trans-unit>
+            <trans-unit id="Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky in itransition.">
+                <source>Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky in itransition.</source>
+                <target>Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky in itransition.</target>
+            </trans-unit>
+            <trans-unit id="from">
+                <source>from</source>
+                <target>from</target>
+            </trans-unit>
+            <trans-unit id="Icons made by">
+                <source>Icons made by</source>
+                <target>Icons made by</target>
+            </trans-unit>
+            <trans-unit id="is licensed by">
+                <source>is licensed by</source>
+                <target>is licensed by</target>
+            </trans-unit>
+            <trans-unit id="Title">
+                <source>Title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="Author">
+                <source>Author</source>
+                <target>Author</target>
+            </trans-unit>
+            <trans-unit id="Category">
+                <source>Category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="Choose category">
+                <source>Choose category</source>
+                <target>Choose category</target>
+            </trans-unit>
+            <trans-unit id="Publication date">
+                <source>Publication date</source>
+                <target>Publication date</target>
+            </trans-unit>
+            <trans-unit id="Description">
+                <source>Description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="Body">
+                <source>Body</source>
+                <target>Body</target>
+            </trans-unit>
+            <trans-unit id="Edit article">
+                <source>Edit article</source>
+                <target>Edit article</target>
+            </trans-unit>
+            <trans-unit id="Save article">
+                <source>Save article</source>
+                <target>Save article</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,6 @@
+{% extends 'default/main.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center lead">{{ categoryName | trans}}</h1>
+    {{  parent() }}
+{% endblock %}

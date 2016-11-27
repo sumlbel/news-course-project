@@ -58,12 +58,22 @@ class AjaxArticlesController extends Controller
      */
     private function _getRequestedarticles(Request $request)
     {
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
+        $repositoryArticle = $this->getDoctrine()->getRepository(
+            'AppBundle:Article'
+        );
+        $repositoryCategory = $this->getDoctrine()->getRepository(
+            'AppBundle:Category'
+        );
         $sortByField = $request->query->get('sortbyfield', 'title');
         $order = $request->query->get('order', 'asc');
         $pattern = $request->query->get('pattern');
         $filterField = $request->query->get('filterbyfield');
-        $articles = $repository->findBy(
+        if ($filterField == 'category') {
+            $pattern = $repositoryCategory->findOneBy(
+                array('name' => $pattern)
+            )->getId();
+        }
+        $articles = $repositoryArticle->findBy(
             $this->_filterField($filterField, $pattern),
             array(
                 $sortByField => $order

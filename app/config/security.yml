@@ -29,7 +29,13 @@ security:
     access_control:
         - { path: /about, roles: ROLE_USER}
         - { path: /ajax, roles: ROLE_USER}
+        - { path: /news, roles: ROLE_USER}
+        - { path: /category, roles: ROLE_USER}
+        - { path: /search, roles: ROLE_USER}
         - { path: /moderating_articles, roles: ROLE_MODERATOR}
+        - { path: /manage_categories, roles: ROLE_MODERATOR}
+        - { path: /delete, roles: ROLE_MODERATOR}
+        - { path: /edit, roles: ROLE_MODERATOR}
         - { path: /create, roles: ROLE_MODERATOR}
         - { path: /admin, roles: ROLE_ADMIN }
 

@@ -17,6 +17,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new KMS\FroalaEditorBundle\KMSFroalaEditorBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new AppBundle\AppBundle(),

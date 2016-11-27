@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit article - Newscast{% endblock%}
+{% block title %}{% trans %}Edit article{% endtrans %} - Newscast{% endblock%}
 
 {% block body %}
 
-    <div class="block-width-95">
+    <div class="block-width-95 center-block">
         {% form_theme form 'bootstrap_3_layout.html.twig' %}
         {{ form_start(form) }}
             {{ form_row(form.title) }}
@@ -13,7 +13,11 @@
             {{ form_row(form.publicationDate) }}
             {{ form_row(form.description) }}
             {{ form_row(form.body) }}
-            <button class="btn btn-primary center-block" type="submit">Save article</button>
+            <button class="btn btn-primary center-block" type="submit">
+                {% trans %}
+                Save article
+                {% endtrans %}
+            </button>
         {{ form_end(form) }}
     </div>
 

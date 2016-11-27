@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="Categories">
+                <source>Categories</source>
+                <target>Катэгорыі</target>
+            </trans-unit>
+            <trans-unit id="Previous">
+                <source>Previous</source>
+                <target>Папярэдняя</target>
+            </trans-unit>
+            <trans-unit id="Next">
+                <source>Next</source>
+                <target>Наступная</target>
+            </trans-unit>
+            <trans-unit id="Breaking News">
+                <source>Breaking News</source>
+                <target>Апошнія навіны</target>
+            </trans-unit>
+            <trans-unit id="Environmental">
+                <source>Environmental</source>
+                <target>Экалогія</target>
+            </trans-unit>
+            <trans-unit id="Colleges and Universities">
+                <source>Colleges and Universities</source>
+                <target>Каледжы і ўніверсітэты</target>
+            </trans-unit>
+            <trans-unit id="Current Events">
+                <source>Current Events</source>
+                <target>Бягучыя падзеі</target>
+            </trans-unit>
+            <trans-unit id="Government">
+                <source>Government</source>
+                <target>Урад</target>
+            </trans-unit>
+            <trans-unit id="Magazines">
+                <source>Magazines</source>
+                <target>Часопісы</target>
+            </trans-unit>
+            <trans-unit id="Media">
+                <source>Media</source>
+                <target>Медыя</target>
+            </trans-unit>
+            <trans-unit id="Newspapers">
+                <source>Newspapers</source>
+                <target>Газеты</target>
+            </trans-unit>
+            <trans-unit id="Politics">
+                <source>Politics</source>
+                <target>Палітыка</target>
+            </trans-unit>
+            <trans-unit id="Regional News">
+                <source>Regional News</source>
+                <target>Рэгіянальныя навіны</target>
+            </trans-unit>
+            <trans-unit id="Religion and Spirituality">
+                <source>Religion and Spirituality</source>
+                <target>Рэлігія і духоўнасць</target>
+            </trans-unit>
+            <trans-unit id="Sports">
+                <source>Sports</source>
+                <target>Спорт</target>
+            </trans-unit>
+            <trans-unit id="Technology">
+                <source>Technology</source>
+                <target>Тэхналогіі</target>
+            </trans-unit>
+            <trans-unit id="Traffic and Roads">
+                <source>Traffic and Roads</source>
+                <target>Трафік і дарогі</target>
+            </trans-unit>
+            <trans-unit id="Weather">
+                <source>Weather</source>
+                <target>Надвор'е</target>
+            </trans-unit>
+            <trans-unit id="Weblogs">
+                <source>Weblogs</source>
+                <target>Вэблогі</target>
+            </trans-unit>
+            <trans-unit id="You have to log in to watch news">
+                <source>You have to log in to watch news</source>
+                <target>Вам трэба ўвайсьці, каб глядзець навіны</target>
+            </trans-unit>
+            <trans-unit id="About Newscast">
+                <source>About Newscast</source>
+                <target>Пра Newscast</target>
+            </trans-unit>
+            <trans-unit id="views">
+                <source>views</source>
+                <target>праглядаў</target>
+            </trans-unit>
+            <trans-unit id="Search">
+                <source>Search</source>
+                <target>Пошук</target>
+            </trans-unit>
+            <trans-unit id="Create article">
+                <source>Create article</source>
+                <target>Стварыць артыкул</target>
+            </trans-unit>
+            <trans-unit id="Manage categories">
+                <source>Manage categories</source>
+                <target>Кіраваць катэгорыямі</target>
+            </trans-unit>
+            <trans-unit id="Manage articles">
+                <source>Manage articles</source>
+                <target>Кіраваць артыкуламі</target>
+            </trans-unit>
+            <trans-unit id="Manage users">
+                <source>Manage users</source>
+                <target>Кіраваць карыстачамі</target>
+            </trans-unit>
+            <trans-unit id="Logout">
+                <source>Logout</source>
+                <target>Выйсьці</target>
+            </trans-unit>
+            <trans-unit id="Sort by:">
+                <source>Sort by:</source>
+                <target>Сартаваць паводле:</target>
+            </trans-unit>
+            <trans-unit id="Edit">
+                <source>Edit</source>
+                <target>Рэдагаваць</target>
+            </trans-unit>
+            <trans-unit id="Are you sure?">
+                <source>Are you sure?</source>
+                <target>Вы ўпэўнены?</target>
+            </trans-unit>
+            <trans-unit id="Delete">
+                <source>Delete</source>
+                <target>Выдаліць</target>
+            </trans-unit>
+            <trans-unit id="Settings">
+                <source>Settings</source>
+                <target>Налады</target>
+            </trans-unit>
+            <trans-unit id="Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky in itransition.">
+                <source>Newscast is a project, developed by Stepan Gerasimovich and Oleg Medvedsky in itransition.</source>
+                <target>Newscast - гэта праект, распрацаваны Сцяпанам Герасімовічам і Алегам Мядведскім у itransition.</target>
+            </trans-unit>
+            <trans-unit id="from">
+                <source>from</source>
+                <target>з</target>
+            </trans-unit>
+            <trans-unit id="Icons made by">
+                <source>Icons made by</source>
+                <target>Іконкі зрабіў</target>
+            </trans-unit>
+            <trans-unit id="is licensed by">
+                <source>is licensed by</source>
+                <target>пад ліцэнзіяй</target>
+            </trans-unit>
+            <trans-unit id="Title">
+                <source>Title</source>
+                <target>Загаловак</target>
+            </trans-unit>
+            <trans-unit id="Author">
+                <source>Author</source>
+                <target>Аўтар</target>
+            </trans-unit>
+            <trans-unit id="Category">
+                <source>Category</source>
+                <target>Катэгорыя</target>
+            </trans-unit>
+            <trans-unit id="Choose category">
+                <source>Choose category</source>
+                <target>Абярыце катэгорыю</target>
+            </trans-unit>
+            <trans-unit id="Publication date">
+                <source>Publication date</source>
+                <target>Дата публікацыі</target>
+            </trans-unit>
+            <trans-unit id="Description">
+                <source>Description</source>
+                <target>Кароткае апісанне</target>
+            </trans-unit>
+            <trans-unit id="Body">
+                <source>Body</source>
+                <target>Тэкст</target>
+            </trans-unit>
+            <trans-unit id="Edit article">
+                <source>Edit article</source>
+                <target>Рэдагаванне артыкулу</target>
+            </trans-unit>
+            <trans-unit id="Save article">
+                <source>Save article</source>
+                <target>Захаваць артыкул</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

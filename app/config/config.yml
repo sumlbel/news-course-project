@@ -143,3 +143,23 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
+
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        app:
+            types:
+                article:
+                    mappings:
+                        title: ~
+                        publicationDate: ~
+                        description: ~
+                        author: ~
+                        body: ~
+                    persistence:
+                        driver: orm
+                        model: AppBundle\Entity\Article
+                        provider: ~
+                        finder: ~
+                        listener: ~
