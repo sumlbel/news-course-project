@@ -128,7 +128,7 @@ knp_paginator:
 
 kms_froala_editor:
     saveURL: "about"
-    saveInterval: 2500
+    saveInterval: 0
     saveParam: "content"
     heightMin: 600
 

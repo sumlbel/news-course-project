@@ -10,7 +10,7 @@ class AboutController extends Controller
     /**
     *
      *
-    * @Route("{_locale}/about", name="about", requirements={"_locale": "en|ru|be"})
+    * @Route("/{_locale}/about", name="about", requirements={"_locale": "en|ru|be"})
     */
     public function indexAction()
     {

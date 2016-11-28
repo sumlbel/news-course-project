@@ -13,6 +13,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RegistrationController extends Controller
 {
+    /**
+     *
+     *
+     * @Route("/{_locale}/register", name="user_registration",
+     *     requirements={"_locale": "en|ru|be"})
+     */
     public function registerAction(Request $request)
     {
         $user = new User();
@@ -39,6 +45,12 @@ class RegistrationController extends Controller
         );
     }
 
+    /**
+     *
+     *
+     * @Route("/{_locale}/register/{token}", name="register_confirmation",
+     *     requirements={"_locale": "en|ru|be"})
+     */
     public function confirmAction($token)
     {
         $em = $this->getDoctrine()->getManager();
@@ -75,7 +87,7 @@ class RegistrationController extends Controller
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
-                    'registration/confiramtionEmail.txt.twig',
+                    'registration\confiramtion_email.txt.twig',
                     array('username' => $user->getUsername(),
                         'confirmationUrl' => $url
                     )

@@ -49,14 +49,17 @@
                         {% endif %}
                         {% if is_granted('ROLE_USER') %}
                             <li>
-                                <form class="navbar-form" role="form" method="get" action="{{ path('search') }}" >
+                                <form class="navbar-form" role="form" method="get"
+                                      action="{{ path('search') }}" >
                                     <div class="form-group">
                                         <input type="text" id="search" name="_search"
-                                               class="form-control" placeholder="{% trans %}Search{% endtrans %}">
+                                               class="form-control" placeholder=
+                                               "{% trans %}
+                                               Search{% endtrans %}">
                                     </div>
                                     <button type="submit" class="btn btn-default" value='search'>
                                         {% trans %}
-                                        Search
+                                        Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                         {% endtrans %}
                                     </button>
                                 </form>

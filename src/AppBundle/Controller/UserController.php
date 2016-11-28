@@ -52,7 +52,10 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm('AppBundle\Form\UserType', $user, array('doing'=>'new'));
+        $form = $this->createForm(
+            'AppBundle\Form\UserType', $user, array(
+            'doing'=>'new')
+        );
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -92,7 +95,7 @@ class UserController extends Controller
             $em->persist($user);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('user_index');
         }
 
         return $this->render(

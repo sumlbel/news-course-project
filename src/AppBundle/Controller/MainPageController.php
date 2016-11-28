@@ -3,11 +3,17 @@
 namespace AppBundle\Controller;
 
 use Elastica\Query;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 define('ARTICLES_PER_PAGE', '8');
 class MainPageController extends Controller
 {
+    /**
+     *
+     *
+     * @Route("/{_locale}/", name="main", requirements={"_locale": "en|ru|be"})
+     */
     public function noFilterAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
@@ -24,8 +30,15 @@ class MainPageController extends Controller
             array('pagination' => $pagination));
     }
 
-    public function filterByCategoryAction(Request $request, $id)
+    /**
+     *
+     *
+     * @Route("/{_locale}/filter", name="category_show",
+     *     requirements={"_locale": "en|ru|be"})
+     */
+    public function filterByCategoryAction(Request $request)
     {
+        $id = $request->get('id');
         $repositoryArticles = $this->getDoctrine()->getRepository(
             'AppBundle:Article'
         );
@@ -49,6 +62,12 @@ class MainPageController extends Controller
         );
     }
 
+    /**
+     *
+     *
+     * @Route("/{_locale}/search", name="search",
+     *     requirements={"_locale": "en|ru|be"})
+     */
     public function searchAction(Request $request)
     {
         $finder = $this->container->get('fos_elastica.finder.app.article');
@@ -67,6 +86,11 @@ class MainPageController extends Controller
         );
     }
 
+    /**
+     *
+     *
+     * @Route("/", name="main_default", requirements={"_locale": "en|ru|be"})
+     */
     public function redirectToUsersLocaleAction(Request $request)
     {
         return $this->redirectToRoute(

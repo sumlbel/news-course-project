@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Util\TokenGenerator;
@@ -15,6 +16,12 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  */
 class PasswordRecoveryController extends Controller
 {
+    /**
+     *
+     *
+     * @Route("/{_locale}/recovery", name="recovery",
+     *     requirements={"_locale": "en|ru|be"})
+     */
     public function recoveryAction(Request $request)
     {
         $email = $request->request->get('_email');
@@ -42,6 +49,12 @@ class PasswordRecoveryController extends Controller
         );
     }
 
+    /**
+     *
+     *
+     * @Route("/{_locale}/reset/{token}", name="reset_password",
+     *     requirements={"_locale": "en|ru|be"})
+     */
     public function resetAction(Request $request, $token)
     {
         $user = $this->_findUserByToken($token);
@@ -82,7 +95,7 @@ class PasswordRecoveryController extends Controller
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
-                    'security/recoveryEmail.txt.twig',
+                    'security/recovery_email.txt.twig',
                     array('username' => $user->getUsername(),
                         'confirmationUrl' => $url
                     )

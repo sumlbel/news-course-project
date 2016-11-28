@@ -2,46 +2,8 @@ app:
     resource: "@AppBundle/Controller"
     type:     annotation
 
-login:
-    path:     /{_locale}/login
-    defaults: { _controller: AppBundle:Security:login }
-    requirements:
-        _locale: en|ru|be
 logout:
     path: /logout
-main_default:
-    path:     /
-    defaults: { _controller: AppBundle:MainPage:redirectToUsersLocale }
-main:
-    path:     /{_locale}/
-    defaults: { _controller: AppBundle:MainPage:noFilter }
-    requirements:
-        _locale: en|ru|be
-recovery:
-    path:     /{_locale}/recovery
-    defaults: { _controller: AppBundle:PasswordRecovery:recovery }
-    requirements:
-        _locale: en|ru|be
-reset_password:
-    path:     /{_locale}/reset/{token}
-    defaults: { _controller: AppBundle:PasswordRecovery:reset }
-    requirements:
-        _locale: en|ru|be
-search:
-    path:     /{_locale}/search
-    defaults: { _controller: AppBundle:MainPage:search }
-    requirements:
-        _locale: en|ru|be
-user_registration:
-    path:     /{_locale}/register
-    defaults: { _controller: AppBundle:Registration:register }
-    requirements:
-        _locale: en|ru|be
-register_confirmation:
-    path:     /{_locale}/register/{token}
-    defaults: { _controller: AppBundle:Registration:confirm }
-    requirements:
-        _locale: en|ru|be
 
 kms_froala_editor:
     resource: '@KMSFroalaEditorBundle/Resources/config/routing.yml'

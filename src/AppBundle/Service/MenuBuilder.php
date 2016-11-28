@@ -39,7 +39,7 @@ class MenuBuilder
                 'category' . $category->getName(),
                 array(
                     'label' => $category->getName(),
-                    'route' => 'category_index',
+                    'route' => 'category_show',
                     'routeParameters' => array('id' => $category->getId())
                 )
             )->setExtra('translation_domain', false);
