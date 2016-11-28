@@ -3,12 +3,19 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class AjaxArticlesController extends Controller
 {
+
+    /**
+     *
+     *
+     * @Route("/ajax/articles", name="ajaxArticles")
+     */
     public function articlesListAction(Request $request)
     {
         $articles = $this->_getRequestedarticles($request);

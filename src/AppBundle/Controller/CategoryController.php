@@ -2,16 +2,16 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\AppBundle;
 use AppBundle\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Category controller.
  *
- * @Route("{_locale}/manage_categories")
+ * @Route("{_locale}/manage_categories", requirements={"_locale": "en|ru|be"})
  */
 class CategoryController extends Controller
 {
@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
         $categories = $em->getRepository('AppBundle:Category')->findAll();
         return $this->render(
-            'manage_category/index.html.twig', array(
+            'category/index.html.twig', array(
                 'categories' => $categories
             )
         );
@@ -56,7 +56,7 @@ class CategoryController extends Controller
         }
 
         return $this->render(
-            'manage_category/new.html.twig', array(
+            'category/new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
                 )
@@ -66,7 +66,7 @@ class CategoryController extends Controller
     /**
      * Displays a form to edit an existing category entity.
      *
-     * @Route("/{id}/edit", name="category_edit")
+     * @Route("/edit/{id}", name="category_edit")
      * @Method({"GET",      "POST"})
      */
     public function editAction(Request $request, Category $category)
@@ -84,7 +84,7 @@ class CategoryController extends Controller
             );
         }
 
-        return $this->render('manage_category/edit.html.twig', array(
+        return $this->render('category/edit.html.twig', array(
             'category' => $category,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView()
@@ -94,7 +94,7 @@ class CategoryController extends Controller
     /**
      * Deletes a category entity.
      *
-     * @Route("/{id}",   name="category_delete")
+     * @Route("/delete/{id}",   name="category_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Category $category)

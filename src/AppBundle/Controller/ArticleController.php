@@ -6,9 +6,33 @@ use AppBundle\Entity\Article;
 use AppBundle\Form\NewsForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Article controller.
+ *
+ * @Route("/article")
+ */
 class ArticleController extends Controller
 {
+
+    /**
+     * Displays a form to edit an existing article entity.
+     *
+     * @Route("/", name="article")
+     *
+     */
+    public function indexAction()
+    {
+        return $this->render('administration/moderator.html.twig');
+    }
+
+    /**
+     * Displays a form to edit an existing article entity.
+     *
+     * @Route("/edit/{id}", name="article_edit")
+     *
+     */
     public function editAction(Request $request, $id)
     {
         if ($id === 'new') {
@@ -39,7 +63,13 @@ class ArticleController extends Controller
         );
     }
 
-    public function indexAction($id)
+    /**
+     * Finds and displays a user entity.
+     *
+     * @Route("/{id}", name="article_show", requirements={"id": "\d+"})
+     *
+     */
+    public function showAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
         $article = $repository->findOneBy(array('id' => $id));
@@ -60,6 +90,12 @@ class ArticleController extends Controller
         );
     }
 
+    /**
+     * Deletes a article entity.
+     *
+     * @Route("/delete/{id}", name="article_delete")
+     *
+     */
     public function deleteAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');

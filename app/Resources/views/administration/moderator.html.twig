@@ -14,6 +14,7 @@
     <script>
         $("#entities-grid").ajaxgrid({
             dataUrl: "http://localhost:8000/ajax/articles",
+            editUrl: "http://localhost:8000/article/edit",
             sortableColumns: ["id", "title", "author", "category", "publicationDate"],
             filterableColumns: ["id", "title", "author", "category", "publicationDate"],
             rowsPerPage: 5

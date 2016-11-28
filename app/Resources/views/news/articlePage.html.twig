@@ -27,14 +27,14 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="{{ path('edit_article', {'id': id}) }}">
+                        <a href="{{ path('article_edit', {'id': id}) }}">
                             {% trans %}
                             Edit
                             {% endtrans %}
                         </a>
                     </li>
                     <li>
-                        <a href="{{ path('delete_article', {'id': id}) }}"
+                        <a href="{{ path('article_delete', {'id': id}) }}"
                            onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');">
                             {% trans %}
                             Delete

@@ -17,6 +17,9 @@ $.fn.ajaxgrid = function(options) {
         if (!options.dataUrl) {
             throw 'Wrong "dataUrl" exception';
         }
+        if (!options.editUrl) {
+            throw 'Wrong "editUrl" exception';
+        }
         if (!options.sortableColumns) {
             options.sortableColumns = [];
         }
@@ -37,6 +40,7 @@ $.fn.ajaxgrid = function(options) {
     function sendInitRequest() {
         $.getJSON(options.dataUrl, request, function(json) {
             var columns = Object.getOwnPropertyNames(json.data[0]);
+            columns.push('Edit');
             setHeader(headerRow, columns, options.sortableColumns);
             setData(tbody, json.data);
             setPagination(pagination, Math.ceil(json.rows / options.rowsPerPage));
@@ -66,7 +70,7 @@ $.fn.ajaxgrid = function(options) {
 
     function setData(tbody, data) {
         tbody.empty();
-        for (var i = 0; i <data.length; i++) {
+        for (var i = 0; i < data.length; i++) {
             var row = createElement('tr', tbody);
             setRow(row, data[i]);
         }
@@ -77,6 +81,9 @@ $.fn.ajaxgrid = function(options) {
                 createElement('td', row).text(data[dataCell]);
             }
         }
+        var editLink = '<a href="'.concat(options.editUrl, '/', data['id'], '">' +
+            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>');
+        createElement('td', row).html(editLink);
     }
 
     function setPagination(pagination, pages) {

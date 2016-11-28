@@ -1,48 +1,7 @@
-app_category:
-    resource: "@AppBundle/Controller/CategoryController.php"
+app:
+    resource: "@AppBundle/Controller"
     type:     annotation
 
-about:
-    path:     /{_locale}/about
-    defaults: { _controller: AppBundle:About:index }
-    requirements:
-        _locale: en|ru|be
-access_denied:
-    path:     /access_denied
-    defaults: { _controller: AppBundle:AccessDenied:index}
-    requirements:
-        _locale: en|ru|be
-admin:
-    path:     /{_locale}/admin
-    defaults: { _controller: AppBundle:Admin:admin}
-    requirements:
-        _locale: en|ru|be
-ajaxUsers:
-    path:     /ajax/users
-    defaults: { _controller: AppBundle:AjaxUsers:usersList}
-ajaxArticles:
-    path:     /ajax/articles
-    defaults: { _controller: AppBundle:AjaxArticles:articlesList}
-article:
-    path:     /{_locale}/news/{id}
-    defaults: { _controller: AppBundle:Article:index}
-    requirements:
-        _locale: en|ru|be
-category:
-    path:     /{_locale}/category/{id}
-    defaults: { _controller: AppBundle:MainPage:filterByCategory}
-    requirements:
-        _locale: en|ru|be
-delete_article:
-    path:     /{_locale}/delete/{id}
-    defaults: { _controller: AppBundle:Article:delete}
-    requirements:
-        _locale: en|ru|be
-edit_article:
-    path:     /{_locale}/edit/{id}
-    defaults: { _controller: AppBundle:Article:edit }
-    requirements:
-        _locale: en|ru|be
 login:
     path:     /{_locale}/login
     defaults: { _controller: AppBundle:Security:login }
@@ -50,11 +9,6 @@ login:
         _locale: en|ru|be
 logout:
     path: /logout
-moderating_articles:
-    path:     /{_locale}/moderating_articles
-    defaults: { _controller: AppBundle:Moderator:moderatingArticles}
-    requirements:
-        _locale: en|ru|be
 main_default:
     path:     /
     defaults: { _controller: AppBundle:MainPage:redirectToUsersLocale }

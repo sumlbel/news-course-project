@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,8 +11,9 @@ use Symfony\Component\HttpFoundation\Request;
 class AjaxUsersController extends Controller
 {
     /**
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
+     *
+     *
+     * @Route("/ajax/users", name="ajaxUsers")
      */
     public function usersListAction(Request $request)
     {

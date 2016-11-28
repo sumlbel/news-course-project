@@ -2,7 +2,7 @@
 
 {% block body %}
     {% if is_granted('ROLE_USER') %}
-        <div class="center-block block-width-80">
+        <div class="center-block block-width-80" id="dish-select-component-canvas">
             <table class="nav-tabs table-condensed" title="{% trans %}Sort by:{% endtrans %}">
                 <tr class="small">
                     <th>Sort by:</th>
@@ -13,8 +13,8 @@
                 </tr>
             </table><br>
             {% for article in pagination %}
-                <div class="margin-height-4">
-                    <a  href="{{ path('article', {'id': article.id}) }}" class="block-link">
+                <div class="margin-height-4" id="dish-select-component-items">
+                    <a  href="{{ path('article_show', {'id': article.id}) }}" class="block-link">
                         <div class="article-title">
                             {{ article.title }}
                         </div>

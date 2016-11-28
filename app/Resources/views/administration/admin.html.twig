@@ -7,6 +7,11 @@
         <h1 class="text-center lead">Manage articles</h1>
     </header>
     <div id="entities-grid"></div>
+    <div class="margin-height-4 text-center">
+        <a class="btn btn-info" href="{{ path('user_new') }}">
+            Create a new user
+        </a>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
@@ -14,6 +19,7 @@
     <script>
         $("#entities-grid").ajaxgrid({
             dataUrl: "http://localhost:8000/ajax/users",
+            editUrl: "http://localhost:8000/user/edit",
             sortableColumns: ["id", "username", "email", "isActive", "role"],
             filterableColumns: ["id", "username", "email", "isActive", "role"],
             rowsPerPage: 5

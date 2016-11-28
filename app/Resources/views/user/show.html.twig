@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1 class="text-center lead">{{ user.username }}</h1>
+
+    <table class="table-grid table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Username</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Confirmationtoken</th>
+                <td>{{ user.confirmationToken }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{% if user.isActive %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Wantnewsletter</th>
+                <td>{% if user.wantNewsletter %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ user.roles.0 }}</td>
+            </tr>
+            <tr>
+                <th>
+                    <a class="btn-default btn" href="{{ path('admin') }}" role="button">
+                        Back to the list
+                    </a>
+                </th>
+                <th>
+                    <a class="btn-default btn pull-right" href="{{ path('user_edit', { 'id': user.id }) }}" role="button">
+                        Edit
+                    </a>
+                </th>
+                <th>
+                    {{ form_start(delete_form) }}
+                    <input class="btn-danger btn" type="submit" value="Delete" />
+                    {{ form_end(delete_form) }}
+                </th>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

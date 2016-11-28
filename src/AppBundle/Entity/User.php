@@ -81,7 +81,7 @@ class User implements AdvancedUserInterface, \Serializable
      * @Assert\NotBlank()
      * @ORM\Column(name="role", type="string", length=64)
      */
-    private $role = 'ROLE_USER';
+    private $roles = 'ROLE_USER';
 
     /**
      * Get id
@@ -242,14 +242,14 @@ class User implements AdvancedUserInterface, \Serializable
         return null;
     }
 
-    public function setRole($role)
+    public function setRoles($roles)
     {
-        $this->role = $role;
+        $this->roles = $roles[0];
     }
 
     public function getRoles()
     {
-        return array($this->role);
+        return array($this->roles);
     }
 
     public function eraseCredentials()
@@ -284,7 +284,7 @@ class User implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->email,
             $this->isActive,
-            $this->role
+            $this->roles
         ));
     }
 
@@ -296,7 +296,7 @@ class User implements AdvancedUserInterface, \Serializable
             $this->username,
             $this->email,
             $this->isActive,
-            $this->role
+            $this->roles
             ) = unserialize($serialized);
     }
 }

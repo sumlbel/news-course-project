@@ -5,10 +5,9 @@ namespace AppBundle\Controller;
 use Elastica\Query;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
+define('ARTICLES_PER_PAGE', '8');
 class MainPageController extends Controller
 {
-    public $articlesPerPage = 8;
     public function noFilterAction(Request $request)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
@@ -17,7 +16,7 @@ class MainPageController extends Controller
         $pagination = $paginator->paginate(
             $articles,
             $request->query->getInt('page', 1),
-            $this->articlesPerPage
+            ARTICLES_PER_PAGE
         );
 
         return $this->render(
@@ -35,7 +34,7 @@ class MainPageController extends Controller
         $pagination = $paginator->paginate(
             $articles,
             $request->query->getInt('page', 1),
-            $this->articlesPerPage
+            ARTICLES_PER_PAGE
         );
         $repositoryCategory = $this->getDoctrine()->getRepository(
             'AppBundle:Category'
@@ -59,7 +58,7 @@ class MainPageController extends Controller
         $pagination = $paginator->paginate(
             $results,
             $request->query->getInt('page', 1),
-            $this->articlesPerPage
+            ARTICLES_PER_PAGE
         );
 
         return $this->render(

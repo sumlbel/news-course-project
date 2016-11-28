@@ -10,10 +10,10 @@
         <link rel="mask-icon" href="{{ asset('favicons/safari-pinned-tab.svg') }}" color="#5bbad5">
         <meta name="theme-color" content="#ffffff">
         {%block stylesheets%}
-            {% stylesheets '@bootstrap_css' '@froala_style'%}
+            {% stylesheets '@bootstrap_css' '@froala_style' %}
                 <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
-                <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/style_fixes.css') }}"/>
             {% endstylesheets %}
+            <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/style_fixes.css') }}"/>
         {% endblock %}
     </head>
     <body>
@@ -69,7 +69,7 @@
                                 <ul class="dropdown-menu">
                                     {% if is_granted('ROLE_MODERATOR') %}
                                         <li>
-                                            <a href="{{ path('edit_article', {'id': 'new'}) }}">
+                                            <a href="{{ path('article_edit', {'id': 'new'}) }}">
                                                 {% trans %}
                                                 Create article
                                                 {% endtrans %}
@@ -83,7 +83,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="{{ path('moderating_articles') }}">
+                                            <a href="{{ path('article') }}">
                                                 {% trans %}
                                                 Manage articles
                                                 {% endtrans %}
@@ -93,7 +93,7 @@
 
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li>
-                                            <a href="{{ path('admin') }}">
+                                            <a href="{{ path('user_index') }}">
                                                 {% trans %}
                                                 Manage users
                                                 {% endtrans %}
