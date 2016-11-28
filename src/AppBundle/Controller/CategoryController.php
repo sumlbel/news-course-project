@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Category controller.
  *
- * @Route("{_locale}/manage_categories", requirements={"_locale": "en|ru|be"})
+ * @Route("{_locale}/category", requirements={"_locale": "en|ru|be"})
  */
 class CategoryController extends Controller
 {

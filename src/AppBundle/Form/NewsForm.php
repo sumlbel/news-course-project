@@ -34,6 +34,9 @@ class NewsForm extends AbstractType
             ->add('description', TextareaType::class)
             ->add(
                 'body', FroalaEditorType::class, array("language" => "en_gb")
+            )
+            ->add(
+                'similarArticles'
             );
     }
 

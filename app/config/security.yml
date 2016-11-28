@@ -29,15 +29,17 @@ security:
     access_control:
         - { path: /about, roles: ROLE_USER}
         - { path: /ajax, roles: ROLE_USER}
-        - { path: /news, roles: ROLE_USER}
-        - { path: /category, roles: ROLE_USER}
         - { path: /search, roles: ROLE_USER}
-        - { path: /moderating_articles, roles: ROLE_MODERATOR}
-        - { path: /manage_categories, roles: ROLE_MODERATOR}
-        - { path: /delete, roles: ROLE_MODERATOR}
-        - { path: /edit, roles: ROLE_MODERATOR}
-        - { path: /create, roles: ROLE_MODERATOR}
-        - { path: /admin, roles: ROLE_ADMIN }
+        - { path: /category/delete, roles: ROLE_MODERATOR}
+        - { path: /category/edit, roles: ROLE_MODERATOR}
+        - { path: /category/new, roles: ROLE_MODERATOR}
+        - { path: /article/new, roles: ROLE_MODERATOR}
+        - { path: /article/delete, roles: ROLE_MODERATOR}
+        - { path: /article/edit, roles: ROLE_MODERATOR}
+        - { path: /article/create, roles: ROLE_MODERATOR}
+        - { path: /category, roles: ROLE_USER}
+        - { path: /article, roles: ROLE_MODERATOR}
+        - { path: /user, roles: ROLE_ADMIN }
 
     encoders:
         AppBundle\Entity\User:

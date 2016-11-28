@@ -82,7 +82,7 @@ $.fn.ajaxgrid = function(options) {
             }
         }
         var editLink = '<a href="'.concat(options.editUrl, '/', data['id'], '">' +
-            '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>');
+            '<span class="glyphicon glyphicon-pencil gray-link" aria-hidden="true"></span></a>');
         createElement('td', row).html(editLink);
     }
 

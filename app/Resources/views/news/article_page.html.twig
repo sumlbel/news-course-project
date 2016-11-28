@@ -48,6 +48,19 @@
         <span class="fr-view">
             {{ body|raw }}
         </span>
+        <div class="separator"></div>
+        {% if similarArticles is not empty %}
+        <div class="block-width-80 center-block similar-block">
+                <h4 class="similar-block-title">You may also like:</h4>
+            {% for article in similarArticles %}
+                <a  href="{{ path('article_show', {'id': article.id}) }}" class="block-link-sm">
+                    <div>
+                        {{ article.title }}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
     <div class="text-align-center margin-height-4">
         <a href="{{ path('about') }}" class="gray-link">

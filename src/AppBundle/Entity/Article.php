@@ -3,6 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Article
@@ -68,6 +72,27 @@ class Article
      * @ORM\Column(name="views", type="integer")
      */
     private $views;
+
+    /**
+     *
+     * @ManyToMany(targetEntity="Article", mappedBy="similarArticles")
+     */
+    private $itSimilarTo;
+
+    /**
+     *
+     * @ManyToMany(targetEntity="Article", inversedBy="itSimilarTo")
+     * @JoinTable(name="relations",
+     *      joinColumns={@JoinColumn(name="article_id", referencedColumnName="id")},
+     *      inverseJoinColumns={
+     *     @JoinColumn(name="relation_article_id", referencedColumnName="id")}
+     *      )
+     *  @Assert\Count(
+     *      max = "5",
+     *      maxMessage = "You cannot specify more than {{ limit }} similar news"
+     * )
+     */
+    private $similarArticles;
 
 
     /**
@@ -199,7 +224,7 @@ class Article
      *
      * @return Article
      */
-    public function setCategory(\AppBundle\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -214,6 +239,38 @@ class Article
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getItSimilarTo()
+    {
+        return $this->itSimilarTo;
+    }
+
+    /**
+     * @param mixed $itSimilarTo
+     */
+    public function setItSimilarTo($itSimilarTo)
+    {
+        $this->itSimilarTo = $itSimilarTo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSimilarArticles()
+    {
+        return $this->similarArticles;
+    }
+
+    /**
+     * @param mixed $similarArticles
+     */
+    public function setSimilarArticles($similarArticles)
+    {
+        $this->similarArticles = $similarArticles;
     }
 
     /**
@@ -236,5 +293,12 @@ class Article
     {
         $this->setViews(0);
         $this->setPublicationDate(new \DateTime());
+        $this->itSimilarTo = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->similarArticles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

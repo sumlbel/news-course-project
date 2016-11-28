@@ -57,7 +57,7 @@ class ArticleController extends Controller
         }
 
         return $this->render(
-            'news/articleEdit.html.twig', array(
+            'news/article_edit.html.twig', array(
             'form' => $form->createView()
             )
         );
@@ -78,7 +78,7 @@ class ArticleController extends Controller
         $em->persist($article);
         $em->flush();
         return $this->render(
-            'news/articlePage.html.twig', array(
+            'news/article_page.html.twig', array(
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'author' => $article->getAuthor(),
@@ -86,6 +86,7 @@ class ArticleController extends Controller
                 'publicationDate' => $article->getPublicationDate(),
                 'views' => $article->getViews(),
                 'body' => $article->getBody(),
+                'similarArticles' => $article->getSimilarArticles(),
             )
         );
     }
