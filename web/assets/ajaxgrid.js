@@ -1,6 +1,7 @@
 $.fn.ajaxgrid = function(options) {
     var root = this;
-    var table, tbody;
+    var table;
+    var tbody;
     var headerRow;
     var filters, pagination;
     var request = {

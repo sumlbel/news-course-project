@@ -36,7 +36,7 @@ class MenuBuilder
 
         foreach ($listCategories as $category) {
             $menu['category']->addChild(
-                'category' . $category->getName(),
+                'category'.$category->getName(),
                 array(
                     'label' => $category->getName(),
                     'route' => 'category_show',

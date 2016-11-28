@@ -127,7 +127,7 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 kms_froala_editor:
-    saveURL: "about"
+    saveURL: ""
     saveInterval: 0
     saveParam: "content"
     heightMin: 600

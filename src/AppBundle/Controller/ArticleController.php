@@ -8,18 +8,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * Article controller.
- *
- * @Route("/article")
- */
+
 class ArticleController extends Controller
 {
 
     /**
      * Displays a form to edit an existing article entity.
      *
-     * @Route("/", name="article")
+     * @Route("/article/", name="article")
      *
      */
     public function indexAction()
@@ -30,7 +26,7 @@ class ArticleController extends Controller
     /**
      * Displays a form to edit an existing article entity.
      *
-     * @Route("/edit/{id}", name="article_edit")
+     * @Route("/article/edit/{id}", name="article_edit")
      *
      */
     public function editAction(Request $request, $id)
@@ -66,7 +62,8 @@ class ArticleController extends Controller
     /**
      * Finds and displays a user entity.
      *
-     * @Route("/{id}", name="article_show", requirements={"id": "\d+"})
+     * @Route("/{_locale}/article/{id}", name="article_show",
+     *     requirements={"id": "\d+", "_locale": "en|ru|be"})
      *
      */
     public function showAction($id)
@@ -94,7 +91,7 @@ class ArticleController extends Controller
     /**
      * Deletes a article entity.
      *
-     * @Route("/delete/{id}", name="article_delete")
+     * @Route("/article/delete/{id}", name="article_delete")
      *
      */
     public function deleteAction($id)

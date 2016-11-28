@@ -186,6 +186,22 @@
                 <source>Save article</source>
                 <target>Сохранить статью</target>
             </trans-unit>
+            <trans-unit id="Log in">
+                <source>Log in</source>
+                <target>Войти</target>
+            </trans-unit>
+            <trans-unit id="Sign up">
+                <source>Sign up</source>
+                <target>Зарегистрироваться</target>
+            </trans-unit>
+            <trans-unit id="Password">
+                <source>Password</source>
+                <target>Пароль</target>
+            </trans-unit>
+            <trans-unit id="Forgot password?">
+                <source>Forgot password?</source>
+                <target>Забыли пароль?</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

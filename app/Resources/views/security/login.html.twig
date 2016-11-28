@@ -17,19 +17,24 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Password"
+                <input type="password" class="form-control" placeholder="{% trans %}
+                Password
+                {% endtrans %}"
                        id="password" name="_password" />
             </div>
 
             <button class="btn btn-primary" type="submit">Log in</button>
         </form>
         <div>
-            <a href="{{ path('recovery') }}">Forgot password?</a>
+            <a href="{{ path('recovery') }}">
+                {% trans %}
+                Forgot password?
+                {% endtrans %}</a>
         </div>
 
         {% for flashMessage in app.session.flashbag.get('can-login') %}
             <div class="alert alert-success">
-                {{ flashMessage }}
+                {{ flashMessage | trans}}
             </div>
         {% endfor %}
 {% endblock %}

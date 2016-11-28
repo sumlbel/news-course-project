@@ -21,7 +21,8 @@
                 </th>
                 <th>
                     {{ form_start(delete_form) }}
-                    <input class="btn-danger btn" type="submit" value="Delete" />
+                    <input class="btn-danger btn" type="submit" value="Delete"
+                           onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');" />
                     {{ form_end(delete_form) }}
                 </th>
             </tr>

@@ -38,7 +38,8 @@ security:
         - { path: /article/edit, roles: ROLE_MODERATOR}
         - { path: /article/create, roles: ROLE_MODERATOR}
         - { path: /category, roles: ROLE_USER}
-        - { path: /article, roles: ROLE_MODERATOR}
+        - { path: /article, roles: ROLE_USER}
+        - { path: /upload, roles: ROLE_USER}
         - { path: /user, roles: ROLE_ADMIN }
 
     encoders:

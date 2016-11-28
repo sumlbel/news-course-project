@@ -26,6 +26,7 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @var string
      * @Assert\NotBlank()
+     *
      * @ORM\Column(name="username", type="string", length=64, unique=true)
      */
     private $username;

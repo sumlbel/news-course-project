@@ -14,7 +14,8 @@
             {{ form_row(form.description, {'attr': {'rows': 4 }}) }}
             {{ form_row(form.similarArticles, {'attr': {'size': 10 }})}}
             {{ form_row(form.body) }}
-            <button class="btn btn-primary center-block" type="submit">
+            <button class="btn btn-primary center-block" type="submit"
+                    onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');">
                 {% trans %}
                 Save article
                 {% endtrans %}
