@@ -22,8 +22,8 @@
     <script src={{ asset('assets/ajaxgrid.js') }}></script>
     <script>
         $("#entities-grid").ajaxgrid({
-            dataUrl: "http://localhost:8000/ajax/articles",
-            editUrl: "http://localhost:8000/article/edit",
+            dataUrl: "http://newscast.com.localhost/app_dev.php/ajax/articles",
+            editUrl: "http://newscast.com.localhost/app_dev.php/article/edit",
             sortableColumns: ["id", "title", "author", "category", "publicationDate"],
             filterableColumns: ["id", "title", "author", "category", "publicationDate"],
             rowsPerPage: 5

@@ -27,9 +27,8 @@ class CategoryController extends Controller
 
         $categories = $em->getRepository('AppBundle:Category')->findAll();
         return $this->render(
-            'category/index.html.twig', array(
-                'categories' => $categories
-            )
+            'category/index.html.twig',
+            ['categories' => $categories]
         );
     }
 
@@ -51,15 +50,15 @@ class CategoryController extends Controller
             $em->flush();
 
             return $this->redirectToRoute(
-                'category_index', array('id' => $category->getId())
+                'category_index',
+                ['id' => $category->getId()]
             );
         }
 
         return $this->render(
-            'category/new.html.twig', array(
-            'category' => $category,
-            'form' => $form->createView(),
-                )
+            'category/new.html.twig',
+            ['category' => $category,
+            'form' => $form->createView()]
         );
     }
 
@@ -84,11 +83,11 @@ class CategoryController extends Controller
             );
         }
 
-        return $this->render('category/edit.html.twig', array(
-            'category' => $category,
+        return $this->render('category/edit.html.twig',
+            ['category' => $category,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView()
-        ));
+            'delete_form' => $deleteForm->createView()]
+        );
     }
 
     /**
@@ -105,7 +104,7 @@ class CategoryController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('AppBundle:Article');
-            $articles = $repository->findBy(array('category' => $category->getId()));
+            $articles = $repository->findBy(['category' => $category->getId()]);
             foreach ($articles as $article) {
                 $em->remove($article);
             }
@@ -128,7 +127,8 @@ class CategoryController extends Controller
         return $this->createFormBuilder()
             ->setAction(
                 $this->generateUrl(
-                    'category_delete', array('id' => $category->getId())
+                    'category_delete',
+                    ['id' => $category->getId()]
                 )
             )
             ->setMethod('DELETE')

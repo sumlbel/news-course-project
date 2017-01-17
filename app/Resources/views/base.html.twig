@@ -34,6 +34,7 @@
                         {% if not is_granted('ROLE_USER') %}
                             <li>
                                 <a href="{{ path('login') }}">
+                                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
                                     {% trans %}
                                     Log in
                                     {% endtrans %}
@@ -41,6 +42,7 @@
                             </li>
                             <li>
                                 <a href="{{ path('user_registration') }}">
+                                    <span class="glyphicon glyphicon-collapse-up" aria-hidden="true"></span>
                                     {% trans %}
                                     Sign up
                                     {% endtrans %}
@@ -67,13 +69,16 @@
                             </li>
                             <li>
                                 <button class="dropdown-toggle btn-link"
-                                        type="button" data-toggle="dropdown">{{ app.user.username }}
+                                        type="button" data-toggle="dropdown">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    {{ app.user.username }}
                                     <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu">
                                     {% if is_granted('ROLE_MODERATOR') %}
                                         <li>
                                             <a href="{{ path('article_edit', {'id': 'new'}) }}">
+                                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                                 {% trans %}
                                                 Create article
                                                 {% endtrans %}
@@ -81,6 +86,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ path('category_index') }}">
+                                                <span class="glyphicon glyphicon-tags" aria-hidden="true"></span>
                                                 {% trans %}
                                                 Manage categories
                                                 {% endtrans %}
@@ -88,6 +94,7 @@
                                         </li>
                                         <li>
                                             <a href="{{ path('article') }}">
+                                                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                                                 {% trans %}
                                                 Manage articles
                                                 {% endtrans %}
@@ -98,6 +105,7 @@
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <li>
                                             <a href="{{ path('user_index') }}">
+                                                <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>
                                                 {% trans %}
                                                 Manage users
                                                 {% endtrans %}
@@ -106,6 +114,7 @@
                                     {% endif %}
                                     <li>
                                         <a href="{{ path('logout') }}">
+                                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                                             {% trans %}
                                             Logout
                                             {% endtrans %}

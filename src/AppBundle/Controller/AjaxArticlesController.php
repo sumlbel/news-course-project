@@ -25,10 +25,9 @@ class AjaxArticlesController extends Controller
 
     private function _filterField($filterField, $pattern){
         if ($filterField != null) {
-            return array(
-                $filterField => $pattern);
+            return [$filterField => $pattern];
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -45,18 +44,18 @@ class AjaxArticlesController extends Controller
         $start = $articlesPerPage * $page;
         $end = $articlesPerPage * ($page + 1);
         $end = ($end >= $count)?$count:$end;
-        $arrayData = array();
+        $arrayData = [];
         for ($i=$start; $i<$end;$i++) {
-            $arrayData[] = array(
+            $arrayData[] = [
                 'id' => $articles[$i]->getId(),
                 'title' => $articles[$i]->getTitle(),
                 'author' => $articles[$i]->getAuthor(),
                 'category' => $articles[$i]->getCategory()->getName(),
                 'publicationDate' =>
                     $articles[$i]->getPublicationDate()->format('d-M-Y')
-            );
+            ];
         }
-        return array('rows' => $count, 'data' => $arrayData);
+        return ['rows' => $count, 'data' => $arrayData];
     }
 
     /**
@@ -77,14 +76,12 @@ class AjaxArticlesController extends Controller
         $filterField = $request->query->get('filterbyfield');
         if ($filterField == 'category') {
             $pattern = $repositoryCategory->findOneBy(
-                array('name' => $pattern)
+                ['name' => $pattern]
             )->getId();
         }
         $articles = $repositoryArticle->findBy(
             $this->_filterField($filterField, $pattern),
-            array(
-                $sortByField => $order
-            )
+            [$sortByField => $order]
         );
 
         return $articles;

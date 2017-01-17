@@ -12,14 +12,19 @@
             Create a new user
         </a>
     </div>
+    {% for flashMessage in app.session.flashbag.get('delete-yourself') %}
+        <div  class="alert alert-danger block-width-40 center-block">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script src={{ asset('assets/ajaxgrid.js') }}></script>
     <script>
         $("#entities-grid").ajaxgrid({
-            dataUrl: "http://localhost:8000/ajax/users",
-            editUrl: "http://localhost:8000/user/edit",
+            dataUrl: "http://newscast.com.localhost/app_dev.php/ajax/users",
+            editUrl: "http://newscast.com.localhost/app_dev.php/user/edit",
             sortableColumns: ["id", "username", "email", "isActive", "role"],
             filterableColumns: ["id", "username", "email", "isActive", "role"],
             rowsPerPage: 5

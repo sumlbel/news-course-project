@@ -13,13 +13,14 @@
             <li class="margin-left-6">{{ category | trans}}</li>
             <li class="margin-left-6">{{ views }}
                 {% trans %}
-                views
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
                 {% endtrans %}
             </li>
             {% if is_granted('ROLE_MODERATOR') %}
             <li class="margin-left-6 btn-group text-primary">
-                <button class="dropdown-toggle btn-link"
+                <button class="dropdown-toggle"
                         type="button" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     {% trans %}
                     Settings
                     {% endtrans %}
@@ -28,6 +29,7 @@
                 <ul class="dropdown-menu">
                     <li>
                         <a href="{{ path('article_edit', {'id': id}) }}">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                             {% trans %}
                             Edit
                             {% endtrans %}
@@ -36,6 +38,7 @@
                     <li>
                         <a href="{{ path('article_delete', {'id': id}) }}"
                            onclick="return confirm('{% trans %}Are you sure?{% endtrans %}');">
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                             {% trans %}
                             Delete
                             {% endtrans %}

@@ -36,10 +36,9 @@ class UserController extends Controller
         $deleteForm = $this->createDeleteForm($user);
 
         return $this->render(
-            'user/show.html.twig', array(
-            'user' => $user,
-            'delete_form' => $deleteForm->createView(),
-            )
+            'user/show.html.twig',
+            ['user' => $user,
+            'delete_form' => $deleteForm->createView()]
         );
     }
 
@@ -53,8 +52,8 @@ class UserController extends Controller
     {
         $user = new User();
         $form = $this->createForm(
-            'AppBundle\Form\UserType', $user, array(
-            'doing'=>'new')
+            'AppBundle\Form\UserType', $user,
+            ['doing'=>'new']
         );
         $form->handleRequest($request);
 
@@ -70,10 +69,9 @@ class UserController extends Controller
         }
 
         return $this->render(
-            'user/new.html.twig', array(
-            'user' => $user,
-            'form' => $form->createView(),
-            )
+            'user/new.html.twig',
+            ['user' => $user,
+            'form' => $form->createView()]
         );
     }
 
@@ -87,7 +85,7 @@ class UserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm(
-            'AppBundle\Form\UserType', $user, array('doing'=>'edit')
+            'AppBundle\Form\UserType', $user, ['doing'=>'edit']
         );
         $editForm->handleRequest($request);
         if ($editForm->isSubmitted()) {
@@ -99,11 +97,10 @@ class UserController extends Controller
         }
 
         return $this->render(
-            'user/edit.html.twig', array(
-            'user' => $user,
+            'user/edit.html.twig',
+            ['user' => $user,
             'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            )
+            'delete_form' => $deleteForm->createView()]
         );
     }
 
@@ -116,12 +113,21 @@ class UserController extends Controller
     public function deleteAction(Request $request, User $user)
     {
         $form = $this->createDeleteForm($user);
+        $currentUser = $this->get('security.token_storage')->getToken()->getUser();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($user);
-            $em->flush();
+            if ($user === $currentUser) {
+                $this->addFlash(
+                    'delete-yourself',
+                    'You can\'t delete yourself'
+                );
+
+            } else {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($user);
+                $em->flush();
+            }
         }
 
         return $this->redirectToRoute('user_index');
@@ -138,7 +144,7 @@ class UserController extends Controller
     {
         return $this->createFormBuilder()
             ->setAction(
-                $this->generateUrl('user_delete', array('id' => $user->getId()))
+                $this->generateUrl('user_delete', ['id' => $user->getId()])
             )
             ->setMethod('DELETE')
             ->getForm();

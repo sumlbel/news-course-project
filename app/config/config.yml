@@ -156,7 +156,6 @@ fos_elastica:
                 article:
                     mappings:
                         title: ~
-                        publicationDate: ~
                         description: ~
                         author: ~
                         body: ~

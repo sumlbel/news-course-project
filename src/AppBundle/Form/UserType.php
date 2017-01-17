@@ -30,28 +30,27 @@ class UserType extends AbstractType
             );
         }
         $builder->add(
-            'isActive', CheckboxType::class, array(
-                'label'    => 'Is active',
-                'required' => false)
+            'isActive', CheckboxType::class,
+            ['label'    => 'Is active',
+                'required' => false]
         )
             ->add(
-                'wantNewsletter', CheckboxType::class, array(
-                'label'    => 'Receiving newsletter',
-                'required' => false)
+                'wantNewsletter', CheckboxType::class,
+                ['label'    => 'Receiving newsletter',
+                    'required' => false]
             )
             ->add(
-                'roles', CollectionType::class, array(
-                    'label' => 'Role',
+                'roles', CollectionType::class,
+                ['label' => 'Role',
                     'entry_type'   => ChoiceType::class,
-                    'entry_options'  => array(
+                    'entry_options'  => [
                         'label' => false,
-                        'choices'  => array(
+                        'choices'  => [
                             'User' => 'ROLE_USER',
                             'Moderator'     => 'ROLE_MODERATOR',
-                            'Admin'    => 'ROLE_ADMIN'
-                        )
-                    )
-                )
+                            'Admin'    => 'ROLE_ADMIN']
+                    ]
+                ]
             );
     }
     
@@ -61,10 +60,8 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
-                'data_class' => 'AppBundle\Entity\User',
-                'doing' => null
-            )
+            ['data_class' => 'AppBundle\Entity\User',
+                'doing' => null]
         );
     }
 

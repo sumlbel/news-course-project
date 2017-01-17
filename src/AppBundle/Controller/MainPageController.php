@@ -3,12 +3,16 @@
 namespace AppBundle\Controller;
 
 use Elastica\Query;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Elastica\Query\Fuzzy;
+use Elastica\Query\QueryString;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-define('ARTICLES_PER_PAGE', '8');
+
 class MainPageController extends Controller
 {
+    const ARTICLES_PER_PAGE = 8;
     /**
      *
      *
@@ -22,12 +26,13 @@ class MainPageController extends Controller
         $pagination = $paginator->paginate(
             $articles,
             $request->query->getInt('page', 1),
-            ARTICLES_PER_PAGE
+            self::ARTICLES_PER_PAGE
         );
 
         return $this->render(
             'default/main.html.twig',
-            array('pagination' => $pagination));
+            ['pagination' => $pagination]
+        );
     }
 
     /**
@@ -47,18 +52,18 @@ class MainPageController extends Controller
         $pagination = $paginator->paginate(
             $articles,
             $request->query->getInt('page', 1),
-            ARTICLES_PER_PAGE
+            self::ARTICLES_PER_PAGE
         );
         $repositoryCategory = $this->getDoctrine()->getRepository(
             'AppBundle:Category'
         );
-        $categoryName = $repositoryCategory->findOneBy(
-            array('id' => $id)
-        )->getName();
+        $categoryName = $repositoryCategory
+            ->findOneBy(['id' => $id])->getName();
 
         return $this->render(
             'default/category.html.twig',
-            array('pagination' => $pagination, 'categoryName' => $categoryName)
+            ['pagination' => $pagination,
+                'categoryName' => $categoryName]
         );
     }
 
@@ -70,19 +75,21 @@ class MainPageController extends Controller
      */
     public function searchAction(Request $request)
     {
-        $finder = $this->container->get('fos_elastica.finder.app.article');
+        $finder = $this->get('fos_elastica.finder.app.article');
         $search = $request->get('_search');
         $paginator = $this->get('knp_paginator');
-        $results = $finder->createPaginatorAdapter($search);
+
+        $bodyQuery = new Fuzzy('body', $search);
+        $results = $finder->createPaginatorAdapter($bodyQuery);
         $pagination = $paginator->paginate(
             $results,
             $request->query->getInt('page', 1),
-            ARTICLES_PER_PAGE
+            self::ARTICLES_PER_PAGE
         );
 
         return $this->render(
-            'default/main.html.twig',
-            array('pagination' => $pagination)
+            'default/search.html.twig',
+            ['pagination' => $pagination]
         );
     }
 
@@ -94,9 +101,8 @@ class MainPageController extends Controller
     public function redirectToUsersLocaleAction(Request $request)
     {
         return $this->redirectToRoute(
-            'main', array(
-                '_locale' => $request->getLocale()
-            )
+            'main',
+            ['_locale' => $request->getLocale()]
         );
     }
 }

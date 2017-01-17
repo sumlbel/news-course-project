@@ -73,6 +73,7 @@
     {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
     {%- set attributes = attributes|merge({'data-toggle': 'dropdown'}) %}
     <a href="#"{{ macros.attributes(attributes) }}>
+        <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
         {{ block('label') }}
         <b class="caret"></b>
     </a>

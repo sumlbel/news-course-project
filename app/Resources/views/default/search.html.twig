@@ -1,11 +1,11 @@
 {% extends 'default/main.html.twig' %}
-
 {% block body %}
     {% block tittle %}
-        <h1 class="text-center lead">{{ categoryName | trans}}</h1>
+        {% if pagination|length == 0 %}
+            <h1 class="text-center lead">There is no results. Suck it!</h1>
+        {% endif %}
     {% endblock %}
-    {% block sort %}
-        {{  parent() }}
+    {% block sorting %}
     {% endblock %}
     {% block articles %}
         {{  parent() }}

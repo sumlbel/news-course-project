@@ -26,7 +26,7 @@ class PasswordRecoveryController extends Controller
     {
         $email = $request->request->get('_email');
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
-        $user = $repository->findOneBy(array('email' => $email));
+        $user = $repository->findOneBy(['email' => $email]);
         if ($user) {
             $this->_sendRecoveryInfo($user);
             $this->addFlash(
@@ -43,9 +43,8 @@ class PasswordRecoveryController extends Controller
         }
 
         return $this->render(
-            'security/password_recovery.html.twig', array(
-                'email' => $email
-            )
+            'security/password_recovery.html.twig',
+            ['email' => $email]
         );
     }
 
@@ -79,9 +78,7 @@ class PasswordRecoveryController extends Controller
 
         return $this->render(
             'security/password_reset.html.twig',
-            array (
-                'token' => $token
-            )
+            ['token' => $token]
         );
     }
 
@@ -96,9 +93,8 @@ class PasswordRecoveryController extends Controller
             ->setBody(
                 $this->renderView(
                     'security/recovery_email.txt.twig',
-                    array('username' => $user->getUsername(),
-                        'confirmationUrl' => $url
-                    )
+                    ['username' => $user->getUsername(),
+                        'confirmationUrl' => $url]
                 )
             );
         $this->get('mailer')->send($message);
@@ -112,7 +108,7 @@ class PasswordRecoveryController extends Controller
         $em->flush();
         $url = $this->generateUrl(
             'reset_password',
-            array('token' => $user->getConfirmationToken()),
+            ['token' => $user->getConfirmationToken()],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
         return $url;
@@ -132,7 +128,7 @@ class PasswordRecoveryController extends Controller
     private function _findUserByToken($token)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
-        $user = $repository->findOneBy(array('confirmationToken' => $token));
+        $user = $repository->findOneBy(['confirmationToken' => $token]);
         if (null === $user) {
             throw new NotFoundHttpException(
                 sprintf(

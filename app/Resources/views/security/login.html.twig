@@ -23,13 +23,18 @@
                        id="password" name="_password" />
             </div>
 
-            <button class="btn btn-primary" type="submit">Log in</button>
+            <button class="btn btn-primary" type="submit">
+                Log in
+                <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
+            </button>
         </form>
         <div>
             <a href="{{ path('recovery') }}">
                 {% trans %}
-                Forgot password?
-                {% endtrans %}</a>
+                Forgot password
+                {% endtrans %}
+                <span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+            </a>
         </div>
 
         {% for flashMessage in app.session.flashbag.get('can-login') %}

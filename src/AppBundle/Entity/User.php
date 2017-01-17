@@ -280,13 +280,13 @@ class User implements AdvancedUserInterface, \Serializable
     /** @see \Serializable::serialize() */
     public function serialize()
     {
-        return serialize(array(
-            $this->id,
+        return serialize(
+            [$this->id,
             $this->username,
             $this->email,
             $this->isActive,
-            $this->roles
-        ));
+            $this->roles]
+        );
     }
 
     /** @see \Serializable::unserialize() */

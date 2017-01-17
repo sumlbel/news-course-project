@@ -35,7 +35,7 @@ class ArticleController extends Controller
             $article = new Article();
         } else {
             $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
-            $article = $repository->findOneBy(array('id' => $id));
+            $article = $repository->findOneBy(['id' => $id]);
         }
 
         $form = $this->createForm(NewsForm::class, $article);
@@ -46,16 +46,15 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
             if ($id !== 'new') {
-                return $this->redirectToRoute('article', array('id' => $id));
+                return $this->redirectToRoute('article', ['id' => $id]);
             } else {
-                return $this->redirectToRoute('edit_article', array('id' => $id));
+                return $this->redirectToRoute('edit_article', ['id' => $id]);
             }
         }
 
         return $this->render(
-            'news/article_edit.html.twig', array(
-            'form' => $form->createView()
-            )
+            'news/article_edit.html.twig',
+            ['form' => $form->createView()]
         );
     }
 
@@ -69,13 +68,13 @@ class ArticleController extends Controller
     public function showAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $article = $repository->findOneBy(array('id' => $id));
+        $article = $repository->findOneBy(['id' => $id]);
         $article->setViews($article->getViews()+1);
         $em = $this->getDoctrine()->getManager();
         $em->persist($article);
         $em->flush();
         return $this->render(
-            'news/article_page.html.twig', array(
+            'news/article_page.html.twig', [
                 'id' => $article->getId(),
                 'title' => $article->getTitle(),
                 'author' => $article->getAuthor(),
@@ -84,7 +83,7 @@ class ArticleController extends Controller
                 'views' => $article->getViews(),
                 'body' => $article->getBody(),
                 'similarArticles' => $article->getSimilarArticles(),
-            )
+            ]
         );
     }
 
@@ -97,7 +96,7 @@ class ArticleController extends Controller
     public function deleteAction($id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
-        $article = $repository->findOneBy(array('id' => $id));
+        $article = $repository->findOneBy(['id' => $id]);
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();

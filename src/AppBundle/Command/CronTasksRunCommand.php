@@ -31,7 +31,7 @@ class CronTasksRunCommand extends ContainerAwareCommand
         $today = new \DateTime();
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
         $users = $em->getRepository('AppBundle:User')->findBy(
-            array('wantNewsletter' => true)
+            ['wantNewsletter' => true]
         );
         $articles = $em->getRepository('AppBundle:Article')->findTodaysBest(
             $today,
@@ -54,8 +54,8 @@ class CronTasksRunCommand extends ContainerAwareCommand
             ->setBody(
                 $this->getContainer()->get('templating')->render(
                     'newsletter/newsletter.html.twig',
-                    array('username' => $user->getUsername(),
-                        'articles' => $articles)
+                    ['username' => $user->getUsername(),
+                        'articles' => $articles]
                 ), 'text/html'
             );
 

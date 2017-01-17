@@ -41,7 +41,7 @@ class RegistrationController extends Controller
 
         return $this->render(
             'registration/register.html.twig',
-            array('form' => $form->createView())
+            ['form' => $form->createView()]
         );
     }
 
@@ -87,11 +87,12 @@ class RegistrationController extends Controller
             ->setTo($user->getEmail())
             ->setBody(
                 $this->renderView(
-                    'registration\confiramtion_email.txt.twig',
-                    array('username' => $user->getUsername(),
+                    'registration\confiramtion_email.html.twig',
+                    ['username' => $user->getUsername(),
                         'confirmationUrl' => $url
-                    )
-                )
+                    ]
+                ),
+                'text/html'
             );
         $this->get('mailer')->send($message);
     }
@@ -104,7 +105,7 @@ class RegistrationController extends Controller
         $em->flush();
         $url = $this->generateUrl(
             'register_confirmation',
-            array('token' => $user->getConfirmationToken()),
+            ['token' => $user->getConfirmationToken()],
             UrlGeneratorInterface::ABSOLUTE_URL
         );
         return $url;
@@ -113,7 +114,7 @@ class RegistrationController extends Controller
     private function _findUserByToken($token)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:User');
-        $user = $repository->findOneBy(array('confirmationToken' => $token));
+        $user = $repository->findOneBy(['confirmationToken' => $token]);
         if (null === $user) {
             throw new NotFoundHttpException(
                 sprintf(

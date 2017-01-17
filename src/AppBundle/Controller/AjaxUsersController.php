@@ -24,10 +24,9 @@ class AjaxUsersController extends Controller
 
     private function _filterField($filterField, $pattern){
         if ($filterField != null) {
-            return array(
-                $filterField => $pattern);
+            return [$filterField => $pattern];
         } else {
-            return array();
+            return [];
         }
     }
 
@@ -44,17 +43,17 @@ class AjaxUsersController extends Controller
         $start = $usersPerPage * $page;
         $end = $usersPerPage * ($page + 1);
         $end = ($end >= $count)?$count:$end;
-        $arrayData = array();
+        $arrayData = [];
         for ($i=$start; $i<$end && $i<$count;$i++) {
-            $arrayData[] = array(
+            $arrayData[] = [
                 'id' => $users[$i]->getId(),
                 'username' => $users[$i]->getUsername(),
                 'email' => $users[$i]->getEmail(),
                 'isActive' => $users[$i]->getIsActive(),
                 'role' => $users[$i]->getRoles()
-            );
+            ];
         }
-        return array('rows' => $count, 'data' => $arrayData);
+        return ['rows' => $count, 'data' => $arrayData];
     }
 
     /**
@@ -70,9 +69,7 @@ class AjaxUsersController extends Controller
         $filterField = $request->query->get('filterbyfield');
         $users = $repository->findBy(
             $this->_filterField($filterField, $pattern),
-            array(
-                $sortByField => $order
-            )
+            [$sortByField => $order]
         );
 
         return $users;

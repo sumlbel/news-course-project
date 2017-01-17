@@ -20,20 +20,18 @@ class NewsForm extends AbstractType
             ->add('title', TextType::class)
             ->add('author', TextType::class)
             ->add(
-                'category', EntityType::class, array(
-                    'class' => 'AppBundle:Category',
+                'category', EntityType::class,
+                ['class' => 'AppBundle:Category',
                     'choice_label' => 'name',
-                    'placeholder' => 'Choose category',
-                    )
+                    'placeholder' => 'Choose category']
             )
             ->add(
-                'publicationDate', DateType::class, array(
-                    'format' => 'dd MMMM yyyy',
-                    )
+                'publicationDate', DateType::class,
+                ['format' => 'dd MMMM yyyy']
             )
             ->add('description', TextareaType::class)
             ->add(
-                'body', FroalaEditorType::class, array("language" => "en_gb")
+                'body', FroalaEditorType::class, ["language" => "en_gb"]
             )
             ->add(
                 'similarArticles'
@@ -43,10 +41,8 @@ class NewsForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
-                'data_class' => 'AppBundle\Entity\Article',
-                'isNew' => true
-            )
+            ['data_class' => 'AppBundle\Entity\Article',
+                'isNew' => true]
         );
     }
 }

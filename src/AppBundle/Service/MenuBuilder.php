@@ -29,7 +29,7 @@ class MenuBuilder
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild(
             'category',
-            array('label' => 'Categories')
+            ['label' => 'Categories']
         )->setAttribute('dropdown', true);
 
         $listCategories = $this->em->getRepository('AppBundle:Category')->findAll();
@@ -37,11 +37,10 @@ class MenuBuilder
         foreach ($listCategories as $category) {
             $menu['category']->addChild(
                 'category'.$category->getName(),
-                array(
-                    'label' => $category->getName(),
+                ['label' => $category->getName(),
                     'route' => 'category_show',
-                    'routeParameters' => array('id' => $category->getId())
-                )
+                    'routeParameters' => ['id' => $category->getId()]
+                ]
             )->setExtra('translation_domain', false);
         }
 

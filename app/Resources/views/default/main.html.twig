@@ -1,55 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% if is_granted('ROLE_USER') %}
-        <div class="center-block block-width-80">
-            <table class="nav-tabs table-condensed" title="{% trans %}Sort by:{% endtrans %}">
-                <tr class="small">
-                    <th>Sort by:</th>
-                    <th{% if pagination.isSorted('a.Title') %} class="sorted"{% endif %}>
-                    <th>{{ knp_pagination_sortable(pagination,
-                        'Release date', 'a.publicationDate', {direction:'desc'}) }}</th>
-                    <th>{{ knp_pagination_sortable(pagination, 'Views', 'a.views', {direction:'desc'}) }}</th>
-                </tr>
-            </table><br>
-            {% for article in pagination %}
-                <div class="margin-height-4">
-                    <a  href="{{ path('article_show', {'id': article.id}) }}" class="block-link">
-                        <div class="article-title">
-                            {{ article.title }}
-                        </div>
-                        <div class="hr"></div>
-                        <ul class="small attributes list-inline">
-                            <li>{{ article.publicationDate | date('d M Y') }}</li>
-                            <li class="margin-left-8">{{ article.category.name|trans }}</li>
-                            <li class="margin-left-8">{{ article.views }}
-                                {% trans %}
-                                views
-                                {% endtrans %}
-                            </li>
-                        </ul>
-                        <div>
-                            {{ article.description }}
-                        </div>
-                    </a>
-                </div>
-            {% endfor %}
-            <div class="navigation">
-                {{ knp_pagination_render(pagination) }}
+    {% block sorting %}
+        {% if is_granted('ROLE_USER') %}
+            <div class="center-block block-width-80">
+                <table class="nav-tabs table-condensed">
+                    <tr class="small">
+                        <th>
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                        </th>
+                        <th{% if pagination.isSorted('a.publicationDate') %} class="sorted"{% endif %}>
+                        <th>{{ knp_pagination_sortable(pagination,
+                            'Release date', 'a.publicationDate', {direction:'desc'}) }}
+                            {% if pagination.isSorted('a.publicationDate')%}
+                                {% if (pagination.getDirection() == 'asc') %}
+                                    <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                                {% endif %}
+                            {% endif %}
+                        </th>
+                        <th>{{ knp_pagination_sortable(pagination, 'Views', 'a.views', {direction:'desc'}) }}
+                            {% if pagination.isSorted('a.views')%}
+                                {% if (pagination.getDirection() == 'asc') %}
+                                    <span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>
+                                {% else %}
+                                    <span class="glyphicon glyphicon-sort-by-attributes-alt" aria-hidden="true"></span>
+                                {% endif %}
+                            {% endif %}
+                        </th>
+                    </tr>
+                </table>
             </div>
-        <div>
-        <div class="text-align-center margin-height-4">
-            <a href="{{ path('about') }}" class="gray-link">
+            {% endif %}
+    {% endblock %}
+    {% block articles %}
+        {% if is_granted('ROLE_USER') %}
+            <div class="center-block block-width-80">
+                {% for article in pagination %}
+                    <div class="margin-height-4">
+                        <a  href="{{ path('article_show', {'id': article.id}) }}" class="block-link">
+                            <div class="article-title">
+                                {{ article.title }}
+                            </div>
+                            <div class="hr"></div>
+                            <ul class="small attributes list-inline">
+                                <li>{{ article.publicationDate | date('d M Y') }}</li>
+                                <li class="margin-left-8">{{ article.category.name|trans }}</li>
+                                <li class="margin-left-8">{{ article.views }}
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </li>
+                            </ul>
+                            <div>
+                                {{ article.description }}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            <div>
+            <div class="text-align-center margin-height-4">
+                <a href="{{ path('about') }}" class="gray-link">
+                    {% trans %}
+                    About Newscast
+                    {% endtrans %}
+                </a>
+            </div>
+        {% else %}
+            <div  class="alert alert-warning block-width-40 center-block">
                 {% trans %}
-                About Newscast
+                You have to log in to watch news
                 {% endtrans %}
-            </a>
-        </div>
-    {% else %}
-        <div  class="alert alert-warning block-width-40 center-block">
-            {% trans %}
-            You have to log in to watch news
-            {% endtrans %}
-        </div>
-    {% endif %}
+            </div>
+        {% endif %}
+    {% endblock %}
 {% endblock %}
